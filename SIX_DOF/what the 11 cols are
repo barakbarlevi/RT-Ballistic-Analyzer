@@ -1,15 +1,1 @@
 time,psibdx,thtbdx,lonx,latx,alt,dvbe,VBED1,VBED2,VBED3,grndtrck
-
-
-manually:
-1time
-2psibdx
-3thtbdx
-4lonx
-5latx
-6alt
-7dvbe
-8thtvdx
-9-11VBED
-12grndtrck
-13thrust
