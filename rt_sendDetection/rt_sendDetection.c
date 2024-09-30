@@ -124,6 +124,7 @@ int main(int argc, char* argv[])
         struct sched_param param;
         pthread_attr_t attr;
         pthread_t thread;
+        
         int ret;
         int sock;
         struct sockaddr_in server;
