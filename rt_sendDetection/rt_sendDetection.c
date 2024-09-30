@@ -126,6 +126,7 @@ int main(int argc, char* argv[])
         pthread_t thread;
         
         int ret;
+        
         int sock;
         struct sockaddr_in server;
         struct hostent *hp;
