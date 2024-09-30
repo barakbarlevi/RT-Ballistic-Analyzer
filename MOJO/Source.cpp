@@ -77,7 +77,8 @@ int main(int argc, char* argv[])
     ss.str(homeENV);
     std::string home = ss.str();
 
-    std::string pathCADAC = home + "/Source_Files/CADAC/Custom/Version7/";
+    //std::string pathCADAC = home + "/Source_Files/CADAC/Custom/Version7/";
+    std::string pathCADAC = home + "/Source_Files/RT-Ballistic-Analyzer/SIX_DOF/Custom/Version7/"; // xxxx
     //std::string pathCADAC = home + "/CADAC/"; // xxxx
 
     if (argc == 3) {

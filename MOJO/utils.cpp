@@ -419,7 +419,7 @@ namespace utils
 
     void displayUsage() {
     std::cerr << "Usage option 1: " << Argv[0] << " will use default values for the path to the 6-DOF simulation directory and for the port number." << std::endl;
-    std::cerr << "Default values: [/home/username/CADAC] , [36961]" << std::endl;
+    std::cerr << "Default values: [/home/username/RT-Ballistic-Analyzer/SIX_DOF] , [36961]" << std::endl;
     std::cerr << "Usage option 2: " << Argv[0] << " [path] [port] will use the specified values." << std::endl;
     std::cerr << "No other usage options available" << std::endl;
     }
