@@ -25,5 +25,14 @@ In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is 
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
 ### Usage
-1. Open Google Earth. Drag RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml $${\color{red}XXXX ADD ONE TO GITHUB, CURRENTLY IGNORED}$$
-2. 
+1. Open Google Earth. Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it. $${\color{red}XXXX ADD ONE TO GITHUB, CURRENTLY IGNORED}$$
+2. Navigate to the launch point site. By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
+3. Start the server:\
+`./MOJO/MOJO` - testests
+`./MOJO/MOJO [path] [] []` - testest\
+`./MOJO/MOJO [path] [port] []` - testest\
+
+5. Send target detections:\
+ `./rt_sendDetection/rt_sendDetection [IP] [port] [file to open] [period_ns] [priority]` - sdfsdfdsf\
+ `./rt_sendDetection/rt_sendDetection` - sdfsdfsd
+
