@@ -153,7 +153,7 @@ int PredictionSupplierCADAC::runSupplierOnce()
     // } 
 
     try {
-            std::string COMMAND = this->path_to_exe_ + " " + this->primaryInputFile_ + " " + Argv[1];
+            std::string COMMAND = this->path_to_exe_ + " " + this->primaryInputFile_;
             if (std::system(COMMAND.c_str()) != 0) {
             std::cerr << "Command: " << COMMAND << " Failed.\nCheck path to 6-DOF. Exiting" << std::endl;
             exit(1);
