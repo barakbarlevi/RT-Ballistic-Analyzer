@@ -8,6 +8,7 @@ A namespace for some utility functions, mainly involving flat files editing.
 #include <vector>
 #include <iomanip>
 #include <cstring>
+#include <algorithm>
 
 extern int Argc;
 extern char** Argv;
