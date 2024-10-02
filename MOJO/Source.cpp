@@ -66,8 +66,8 @@ int main(int argc, char* argv[])
     Argc = argc;
     Argv = argv;
 
-    if (argc == 2 || argc > 3) {
-        std::cerr << "Error: This program accepts two or no parameters." << std::endl;
+    if (argc > 7) {
+        std::cerr << "Error: Too many arguments. Maximum of 7 allowed." << std::endl;
         utils::displayUsage();
         return 1;
     }
@@ -78,18 +78,69 @@ int main(int argc, char* argv[])
     std::string home = ss.str();
 
     //std::string pathCADAC = home + "/Source_Files/CADAC/Custom/Version7/";
-    std::string pathCADAC = home + "/Source_Files/RT-Ballistic-Analyzer/SIX_DOF/Custom/Version7/"; // xxxx
+    std::string pathBaseDir = home + "/RT-Ballistic-Analyzer"; // xxxx
     //std::string pathCADAC = home + "/CADAC/"; // xxxx
+    float heightFirstDetection(15000); // [meters]
 
-    if (argc == 3) {
-        if(!utils::isValidPort(argv[2]))
-        {
-            std::cerr << "Port number not valid" << std::endl;
-            exit(1);
+    // if (argc == 3) {
+    //     if(!utils::isValidPort(argv[2]))
+    //     {
+    //         std::cerr << "Port number not valid" << std::endl;
+    //         exit(1);
+    //     }
+    //     pathCADAC = std::string(argv[1]) + "/";
+    // }
+
+
+    // Process command-line arguments
+    for (int i = 1; i < argc; ++i) {
+        std::string arg = argv[i];
+
+        if (arg == "-j") {
+            if (i + 1 < argc) {
+                //int userPort = std::stoi(argv[++i]);
+                if(!utils::isValidPort(argv[++i]))
+                {
+                    std::cerr << "Port number specified is not valid" << std::endl;
+                    return 1;
+                }
+            } else {
+                std::cerr << "Error: -j option requires a port number." << std::endl;
+                return 1;
+            }
+        } else if (arg == "-f") {
+            if (i + 1 < argc) {
+                pathBaseDir = argv[++i];
+            } else {
+                std::cerr << "Error: -f option requires a file path." << std::endl;
+                return 1;
+            }
+        } else if (arg == "-h") {
+            if (i + 1 < argc) {
+                try {
+                    heightFirstDetection = std::stof(argv[++i]);
+                    std::cout << "Setting 'heightFirstDetection' from command line: " << heightFirstDetection << std::endl;
+                } catch (const std::invalid_argument&) {
+                    std::cerr << "Error: -h option requires a float value." << std::endl;
+                    return 1;
+                } catch (const std::out_of_range&) {
+                    std::cerr << "Error: -h value is out of range." << std::endl;
+                    return 1;
+                }
+            } else {
+                std::cerr << "Error: -h option requires a height value." << std::endl;
+                return 1;
+            }
+        } else {
+            // Unrecognized option
+            std::cerr << "Error: Unknown option " << arg << std::endl;
+            utils::displayUsage();
+            return 1;
         }
-        pathCADAC = std::string(argv[1]) + "/";
     }
 
+
+    std::cout << "Using base directory path: " << pathBaseDir << std::endl;
     int effective_dtPlot = 2;
     
     
@@ -109,15 +160,15 @@ int main(int argc, char* argv[])
     // Declaring these as vectors allows for dynamically changing the table's 'rows', enabling the live addition/elimination of airframe models, based on received target data such as energy levels, typical heights and speed etc.
     std::vector<availableSuppliers> predictionSuppliers = {CADAC, CADAC, CADAC};
 
-    std::vector<std::string> currentCollectorPriamryInputFiles = {pathCADAC + "inputOriginal.asc",
-                                                                  pathCADAC + "input_Drag0p7.asc",
-                                                                  pathCADAC + "input_Drag1p3.asc"};
-    std::vector<std::string> currentCollectorExecutables = {pathCADAC + "SIX_DOF",
-                                                            pathCADAC + "SIX_DOF",
-                                                            pathCADAC + "SIX_DOF"};
-    std::vector<std::string> currentCollectorLoadPaths = {pathCADAC + "cadacOutputVDXVDX.asc",
-                                                          pathCADAC + "cadacOutputVDXVDX.asc",
-                                                          pathCADAC + "cadacOutputVDXVDX.asc"};
+    std::vector<std::string> currentCollectorPriamryInputFiles = {pathBaseDir + "/CADAC_6DOF/inputOriginal.asc",
+                                                                  pathBaseDir + "/CADAC_6DOF/input_Drag0p7.asc",
+                                                                  pathBaseDir + "/CADAC_6DOF/input_Drag1p3.asc"};
+    std::vector<std::string> currentCollectorExecutables = {pathBaseDir + "/CADAC_6DOF_BINARY",
+                                                            pathBaseDir + "/CADAC_6DOF_BINARY",
+                                                            pathBaseDir + "/CADAC_6DOF_BINARY"};
+    std::vector<std::string> currentCollectorLoadPaths = {pathBaseDir + "/CADAC_6DOF/cadacOutputVDXVDX.asc",
+                                                          pathBaseDir + "/CADAC_6DOF/cadacOutputVDXVDX.asc",
+                                                          pathBaseDir + "/CADAC_6DOF/cadacOutputVDXVDX.asc"};
 
 
     // Initialize necessary .kml files. Only Primary_Controller.kml has to be dragged into Google Earth.
@@ -128,7 +179,7 @@ int main(int argc, char* argv[])
     // class from the Trajectory <- SensorTrajectory <- SensorTrajectory* hierarchy, because we need to know how to parse
     // information in the output file, and the structure of the file may change. Thread receiveDataFromRealtime runs 
     // until the last detection is recevied (ground impact).
-    std::string detectionKML = "DetectionRT.kml";
+    std::string detectionKML = pathBaseDir + "/MOJO/DetectionRT.kml";
     SensorTrajectoryCADAC trajectoryFromSensor("RT", detectionKML);
     std::thread receiveDataFromRealtime = trajectoryFromSensor.threadReceiveDataFromRT(syncObject);
 
@@ -147,7 +198,6 @@ int main(int argc, char* argv[])
         // detectable parameters. In the example below, we iterate until a certain height at ascent is reached. State vector (position, velocity, etc)
         // is sampled in synchronization with incoming detections: receive message -> sample -> receive message -> sample ....
 
-        float heightFirstDetection(15000); // [meters]
         
         //while ((std::stof(trajectoryFromSensor.BITA_Params_.BITA_height) < heightFirstDetection) && (trajectoryFromSensor.get_vVertical() <= 0))
         while ((std::stof(trajectoryFromSensor.getBITA_Params().BITA_height) < heightFirstDetection) && (trajectoryFromSensor.get_vVertical() <= 0))
@@ -210,7 +260,7 @@ int main(int argc, char* argv[])
                 {
                     case CADAC:
                     {
-                        std::shared_ptr<PredictionSupplierCADAC> predictionSupplierCADAC = std::make_shared<PredictionSupplierCADAC>(currentCollectorExecutables.at(i), currentCollectorPriamryInputFiles.at(i), pathCADAC);
+                        std::shared_ptr<PredictionSupplierCADAC> predictionSupplierCADAC = std::make_shared<PredictionSupplierCADAC>(currentCollectorExecutables.at(i), currentCollectorPriamryInputFiles.at(i), pathBaseDir + "/CADAC_6DOF/");
 
                         // Injecting the state of the detected target into the current input file for a simulations.
                         // At the first time executing this line, BITA params are from 'heightFirstDetection'.

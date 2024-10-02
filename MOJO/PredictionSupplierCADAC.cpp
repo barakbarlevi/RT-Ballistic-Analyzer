@@ -123,8 +123,36 @@ int PredictionSupplierCADAC::updateBITA_ParamsInSupplierInput(BITA_params BITA_p
 
 int PredictionSupplierCADAC::runSupplierOnce()
 { 
-    if (Argc == 3) {
-        try {
+    // xxxx
+    // if (Argc == 3) {
+    //     try {
+    //         std::string COMMAND = this->path_to_exe_ + " " + this->primaryInputFile_ + " " + Argv[1];
+    //         if (std::system(COMMAND.c_str()) != 0) {
+    //         std::cerr << "Command: " << COMMAND << " Failed.\nCheck path to 6-DOF. Exiting" << std::endl;
+    //         exit(1);
+    // }
+    //     } catch (const std::invalid_argument& e) {
+    //         std::cerr << "Error: Argument is not a valid integer." << std::endl;
+    //         throw; // Re-throw the exception to handle it in main
+    //     } catch (const std::out_of_range& e) {
+    //         std::cerr << "Error: Argument is out of range for an integer." << std::endl;
+    //         throw; // Re-throw the exception to handle it in main
+    //     }
+
+    // }
+    // else if (Argc == 1) {
+    //     std::string COMMAND = this->path_to_exe_ + " " + this->primaryInputFile_;
+    //     if (std::system(COMMAND.c_str()) != 0) {
+    //     std::cerr << "Command: " << COMMAND << " Failed.\nCheck path to 6-DOF. Exiting" << std::endl;
+    //     exit(1);
+    // }
+    // } 
+    // else {
+    //     std::cerr << "Error: argc == 2 | argc > 3, improper usage, exiting" << std::endl;
+    //     exit(1);
+    // } 
+
+    try {
             std::string COMMAND = this->path_to_exe_ + " " + this->primaryInputFile_ + " " + Argv[1];
             if (std::system(COMMAND.c_str()) != 0) {
             std::cerr << "Command: " << COMMAND << " Failed.\nCheck path to 6-DOF. Exiting" << std::endl;
@@ -138,18 +166,6 @@ int PredictionSupplierCADAC::runSupplierOnce()
             throw; // Re-throw the exception to handle it in main
         }
 
-    }
-    else if (Argc == 1) {
-        std::string COMMAND = this->path_to_exe_ + " " + this->primaryInputFile_;
-        if (std::system(COMMAND.c_str()) != 0) {
-        std::cerr << "Command: " << COMMAND << " Failed.\nCheck path to 6-DOF. Exiting" << std::endl;
-        exit(1);
-    }
-    } 
-    else {
-        std::cerr << "Error: argc == 2 | argc > 3, improper usage, exiting" << std::endl;
-        exit(1);
-    } 
 
     return 0;
 }

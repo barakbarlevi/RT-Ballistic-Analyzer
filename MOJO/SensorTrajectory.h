@@ -29,7 +29,10 @@ class SensorTrajectory : public Trajectory {
      *        line argument, this argument is taken. Otherwise, sets it to a
      *        default number: 36961.
      */
-    int getPortNumber();
+    
+    //int getPortNumber(); // xxxx
+    void setPortNumber();
+    int getPortNumber() { return this->portNumber_;};
 
     /**
      * @brief Set the trajectory's momentary 'BITA_Params_', as received over the network.
@@ -62,6 +65,6 @@ class SensorTrajectory : public Trajectory {
     
     private:
 
-    int portNumber_ = 0;
+    int portNumber_ = 36961;
     
 };

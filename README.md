@@ -28,11 +28,10 @@ For demonstration purposes, assuming that the general viewer doesn't have the ne
 1. Open Google Earth. Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it. $${\color{red}XXXX ADD ONE TO GITHUB, CURRENTLY IGNORED}$$
 2. Navigate to the launch point site. By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
 3. Start the server:\
-`./MOJO/MOJO` - testests
-`./MOJO/MOJO [path] [] []` - testest\
-`./MOJO/MOJO [path] [port] []` - testest\
+`./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]` - testests
+`./MOJO_BINARY` - testest\
 
-5. Send target detections:\
- `./rt_sendDetection/rt_sendDetection [IP] [port] [file to open] [period_ns] [priority]` - sdfsdfdsf\
- `./rt_sendDetection/rt_sendDetection` - sdfsdfsd
+4. Send target detections:\
+ `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority][IP] [port] [file to open] [period_ns] [priority]` - sdfsdfdsf\
+ `./rt_sendDetection_BINARY` - sdfsdfsd
 

@@ -14,6 +14,6 @@ void SuppliersCollector::plotCollectorAtOnce(int effective_dtPlot) {
         supplierTrajectory->appendTrajectoryToKML(effective_dtPlot, i, this->suppliersVector_.size(), 1);
     }
 
-    utils::kmlInsertOneNetworkLink("Secondary_Controller.kml",this->collectorKML_);
+    utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",this->collectorKML_);
         
 }

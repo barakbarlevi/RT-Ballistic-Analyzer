@@ -50,7 +50,7 @@ int isValidPriority(const char *priorityStr) {
 }
 
 void printUsage() {
-    fprintf(stderr, "Usage: ./rt_sendDetection -i [IP] -j [port] -f [path to file] -n [period_ns] -p [priority]\n");
+    fprintf(stderr, "Usage: ./rt_sendDetection -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]\n");
 }
 
 

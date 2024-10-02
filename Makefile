@@ -27,10 +27,10 @@
 
 # Top-level Makefile
 
-.PHONY: all clean rt_sendDetection MOJO SIX_DOF
+.PHONY: all clean rt_sendDetection MOJO CADAC_6DOF
 
 # Define targets
-all: rt_sendDetection MOJO SIX_DOF
+all: rt_sendDetection MOJO CADAC_6DOF
 
 rt_sendDetection:
 	@echo "Building Part 1: rt_sendDetection"
@@ -40,13 +40,13 @@ MOJO:
 	@echo "Building Part 2: MOJO"
 	cd MOJO && make
 
-SIX_DOF:
-	@echo "Building Part 3: SIX_DOF"
-	cd SIX_DOF && make
+CADAC_6DOF:
+	@echo "Building Part 3: CADAC_6DOF"
+	cd CADAC_6DOF && make
 
 clean:
 	@echo "Cleaning up..."
 	cd rt_sendDetection && make clean
 	cd MOJO && make clean
-	cd SIX_DOF && make clean
+	cd CADAC_6DOF && make clean
 

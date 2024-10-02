@@ -16,7 +16,7 @@ CFLAGS :=-Wall -Wextra -g $(foreach D,$(INCDIRS),-I$(D))
 CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.cpp))
 OBJECTS = $(patsubst %.cpp,%.o,$(CFILES))
 
-EXECUTABLE := ../SIX_DOF_BINARY
+EXECUTABLE := ../CADAC_6DOF_BINARY
 
 all: $(EXECUTABLE)
 

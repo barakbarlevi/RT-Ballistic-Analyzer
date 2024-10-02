@@ -260,7 +260,8 @@ int main(int argc, char *argv[])
 	delete [] plot_file_list;
 	
 	
-	std::string command = "cat " + string(argv[2]) +"/plot1.asc | awk -v OFS=',' '{print $1,$8,$9,$4,$5,$6,$7,$10,$11,$12,$13}' > " + string(argv[2]) +"/cadacOutputVDXVDX.asc";
+	//std::string command = "cat " + string(argv[2]) +"/plot1.asc | awk -v OFS=',' '{print $1,$8,$9,$4,$5,$6,$7,$10,$11,$12,$13}' > " + string(argv[2]) +"/cadacOutputVDXVDX.asc";
+	std::string command = "cat CADAC_6DOF/plot1.asc | awk -v OFS=',' '{print $1,$8,$9,$4,$5,$6,$7,$10,$11,$12,$13}' > CADAC_6DOF/cadacOutputVDXVDX.asc";
 	int systemReturn = std::system(command.c_str());
 	
 	std::cout << "System() return: " << systemReturn << std::endl;

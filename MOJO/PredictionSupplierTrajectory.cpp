@@ -12,7 +12,7 @@ void PredictionSupplierTrajectory::setAltData() {
 void PredictionSupplierTrajectory::appendTrajectoryToKML(int effective_dtPlot, int currentSupplierNumber, int CollectorSize, bool isCollector) {
     
     (void)CollectorSize;
-    if(!isCollector) utils::kmlInsertOneNetworkLink("Secondary_Controller.kml",this->kmlPath_);
+    if(!isCollector) utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",this->kmlPath_);
     this->currentRowIndex_ = this->FirstLineOfNumericData_;
     
     for (unsigned int i = this->currentRowIndex_; i < this->data_.size() / effective_dtPlot; i++) {

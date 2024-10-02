@@ -148,7 +148,7 @@ namespace utils
     int kmlInitPrimaryController()
     {
         std::ofstream kml_file;
-        kml_file.open("Primary_Controller.kml", std::ios::out | std::ios::binary);
+        kml_file.open("MOJO/Primary_Controller.kml", std::ios::out | std::ios::binary);
 
         if (!kml_file.is_open())
         {
@@ -193,13 +193,16 @@ namespace utils
     int kmlInitSecondaryController()
     {
         std::ofstream kml_file;
-        kml_file.open("Secondary_Controller.kml", std::ios::out | std::ios::binary);
+        kml_file.open("MOJO/Secondary_Controller.kml", std::ios::out | std::ios::binary);
+        //kml_file.open("/home/barak/Source_Files/RT-Ballistic-Analyzer/MOJO/Secondary_Controller.kml", std::ios::out | std::ios::binary); // xxxx
+        
 
         if (!kml_file.is_open())
         {
             std::cerr << "Failed to open the file: Secondary_Controller.kml" << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            return -1;
+            //return -1;
+            exit(1);
         }
 
         kml_file << "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n";
@@ -280,7 +283,7 @@ namespace utils
         kml_file << "</kml>\n";
 
         kml_file.close();
-        std::cout << "Closed the file :" << kml_path << "\n";
+        std::cout << "Closed the file: " << kml_path << "\n";
 
         return 0;
     }
@@ -324,7 +327,7 @@ namespace utils
         kml_file << "</kml>\n";
 
         kml_file.close();
-        std::cout << "Closed the file :" << kml_path << "\n";
+        std::cout << "Closed the file: " << kml_path << "\n";
 
         return 0;
     }
@@ -418,10 +421,22 @@ namespace utils
 
 
     void displayUsage() {
-    std::cerr << "Usage option 1: " << Argv[0] << " will use default values for the path to the 6-DOF simulation directory and for the port number." << std::endl;
-    std::cerr << "Default values: [/home/username/RT-Ballistic-Analyzer/SIX_DOF] , [36961]" << std::endl;
-    std::cerr << "Usage option 2: " << Argv[0] << " [path] [port] will use the specified values." << std::endl;
-    std::cerr << "No other usage options available" << std::endl;
+        // xxxx
+    // std::cerr << "Usage option 1: " << Argv[0] << " will use default values for the path to the 6-DOF simulation directory and for the port number." << std::endl;
+    // std::cerr << "Default values: [/home/username/RT-Ballistic-Analyzer/SIX_DOF] , [36961]" << std::endl;
+    // std::cerr << "Usage option 2: " << Argv[0] << " [path] [port] will use the specified values." << std::endl;
+    // std::cerr << "No other usage options available" << std::endl;
+
+    std::cout << "Usage: "<< Argv[0] << " -j [port] -f [path] -h [heightFirstDetection]" << std::endl;
+    std::cout << "Options:" << std::endl;
+    std::cout << "  -j [port]                 Set the port number (1-65535)." << std::endl;
+    std::cout << "  -f [path]                 Specify the path to the base directory RT-Ballistic-Analyzer" << std::endl;
+    std::cout << "  -h [heightFirstDetection] Set the height for first detection in meters (float value)." << std::endl;
+    std::cout << "Default values:" << std::endl;
+    std::cout << "  port: 36961" << std::endl;
+    std::cout << "  path: /home/user/RT-Ballistic-Analyzer" << std::endl;
+    std::cout << "  heightFirstDetection: 15000" << std::endl;
+
     }
 
 }
