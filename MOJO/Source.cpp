@@ -48,6 +48,7 @@ https://geosoft.no/development/cppstyle.html.
 // xxxx delete //std::string pathCADAC = home + "/CADAC/"; // xxxx
 // xxxx clean green trajectory?
 
+#include <regex>
 #include "PredictionSupplierCADAC.h"
 #include "DecisionMaker.h"
 #include "X11_window.h"
@@ -69,7 +70,7 @@ int main(int argc, char* argv[])
     if (argc > 7) {
         std::cerr << "Error: Too many arguments. Maximum of 7 allowed." << std::endl;
         utils::displayUsage();
-        return 1;
+        exit(1);
     }
 
     char* homeENV = getenv("HOME");
@@ -81,6 +82,7 @@ int main(int argc, char* argv[])
     std::string pathBaseDir = home + "/RT-Ballistic-Analyzer"; // xxxx
     //std::string pathCADAC = home + "/CADAC/"; // xxxx
     float heightFirstDetection(15000); // [meters]
+    std::regex floatRegex("^[+-]?([0-9]*[.])?[0-9]+$");
 
     // if (argc == 3) {
     //     if(!utils::isValidPort(argv[2]))
@@ -102,40 +104,47 @@ int main(int argc, char* argv[])
                 if(!utils::isValidPort(argv[++i]))
                 {
                     std::cerr << "Port number specified is not valid" << std::endl;
-                    return 1;
+                    exit(1);
                 }
             } else {
                 std::cerr << "Error: -j option requires a port number." << std::endl;
-                return 1;
+                exit(1);
             }
         } else if (arg == "-f") {
             if (i + 1 < argc) {
                 pathBaseDir = argv[++i];
             } else {
                 std::cerr << "Error: -f option requires a file path." << std::endl;
-                return 1;
+                exit(1);
             }
         } else if (arg == "-h") {
             if (i + 1 < argc) {
                 try {
-                    heightFirstDetection = std::stof(argv[++i]);
-                    std::cout << "Setting 'heightFirstDetection' from command line: " << heightFirstDetection << std::endl;
+                    
+                    if (std::regex_match(argv[++i], floatRegex)) {
+                        heightFirstDetection = std::stof(argv[++i]);
+                        std::cout << "Setting 'heightFirstDetection' from command line: " << heightFirstDetection << std::endl;
+                    }
+                    else {
+                        std::cerr << "Error: -h option requires a height value." << std::endl;
+                        exit(1);
+                    }
                 } catch (const std::invalid_argument&) {
                     std::cerr << "Error: -h option requires a float value." << std::endl;
-                    return 1;
+                    exit(1);
                 } catch (const std::out_of_range&) {
                     std::cerr << "Error: -h value is out of range." << std::endl;
-                    return 1;
+                    exit(1);
                 }
             } else {
                 std::cerr << "Error: -h option requires a height value." << std::endl;
-                return 1;
+                exit(1);
             }
         } else {
             // Unrecognized option
             std::cerr << "Error: Unknown option " << arg << std::endl;
             utils::displayUsage();
-            return 1;
+            exit(1);
         }
     }
 

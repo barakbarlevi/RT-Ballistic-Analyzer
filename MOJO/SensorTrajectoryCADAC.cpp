@@ -136,6 +136,7 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
             }   
         } while (syncObject->firstMsgArrived_ == false);
 
+        std::cout << "HERE" << std::endl; // indeed gets here xxxx
 
         // After first message has already been recieved.
         do {
@@ -148,6 +149,7 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
             else
                 if(buf[0] == '\0') 
                 {
+                    std::cout << "Got: buf[0] == '\0'" << std::endl; // indeed gets here xxxx
                     std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
 
                     this->currentDetectionIndex_--;

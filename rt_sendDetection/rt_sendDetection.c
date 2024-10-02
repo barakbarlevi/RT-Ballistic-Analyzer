@@ -168,7 +168,7 @@ int main(int argc, char* argv[])
         const char* IP = "192.168.0.3"; // Default IP
         //const char* PORT = "36961"; // Default port    
         int PORT = 36961; // Default port    
-        const char* filePath = "V180.asc"; // Default file path
+        const char* filePath = "rt_sendDetection/V180.asc"; // Default file path
         long period_ns = 15695067.264; // Default period in nanoseconds
         int rt_priority = 20; // Default POSIX real-time priority
 
@@ -288,6 +288,7 @@ int main(int argc, char* argv[])
         
         data.file_ = file;
         data.sock_ = sock;
+        data.period_ = period_ns;
 
         ret = pthread_attr_init(&attr);
         if (ret) {
@@ -295,51 +296,52 @@ int main(int argc, char* argv[])
                 goto out;
         }
 
-        // Lock memory 
-        if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1) {
-                printf("mlockall failed: %m\n");
-                exit(-2);
-        }
+        // // Lock memory 
+        // if(mlockall(MCL_CURRENT|MCL_FUTURE) == -1) {
+        //         printf("mlockall failed: %m\n");
+        //         exit(-2);
+        // }
  
-        // Initialize pthread attributes (default values)
-        ret = pthread_attr_init(&attr);
-        if (ret) {
-                printf("init pthread attributes failed\n");
-                goto out;
-        }
+        // // Initialize pthread attributes (default values)
+        // ret = pthread_attr_init(&attr);
+        // if (ret) {
+        //         printf("init pthread attributes failed\n");
+        //         goto out;
+        // }
  
-        // Set a specific stack size  
-        ret = pthread_attr_setstacksize(&attr, PTHREAD_STACK_MIN);
-        if (ret) {
-            printf("pthread setstacksize failed\n");
-            goto out;
-        }
+        // // Set a specific stack size  
+        // ret = pthread_attr_setstacksize(&attr, PTHREAD_STACK_MIN);
+        // if (ret) {
+        //     printf("pthread setstacksize failed\n");
+        //     goto out;
+        // }
  
-        // Set scheduler policy and priority of pthread 
-        ret = pthread_attr_setschedpolicy(&attr, SCHED_FIFO);
-        if (ret) {
-                printf("pthread setschedpolicy failed\n");
-                goto out;
-        }
+        // // Set scheduler policy and priority of pthread 
+        // ret = pthread_attr_setschedpolicy(&attr, SCHED_FIFO);
+        // if (ret) {
+        //         printf("pthread setschedpolicy failed\n");
+        //         goto out;
+        // }
 
         
-        ret = pthread_attr_setschedparam(&attr, &param);
-        if (ret) {
-                printf("pthread setschedparam failed\n");
-                goto out;
-        }
+        // ret = pthread_attr_setschedparam(&attr, &param);
+        // if (ret) {
+        //         printf("pthread setschedparam failed\n");
+        //         goto out;
+        // }
 
-        // Use scheduling parameters of attr
-        ret = pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
-        if (ret) {
-                printf("pthread setinheritsched failed\n");
-                goto out;
-        }
+        // // Use scheduling parameters of attr
+        // ret = pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
+        // if (ret) {
+        //         printf("pthread setinheritsched failed\n");
+        //         goto out;
+        // }
  
         // Create a pthread with specified attributes
         ret = pthread_create(&thread, &attr, simple_cyclic_task, &data);
         if (ret) {
                 printf("create pthread failed\n");
+                fprintf(stderr, "pthread_create failed: %s\n", strerror(ret));
                 goto out;
         }
  

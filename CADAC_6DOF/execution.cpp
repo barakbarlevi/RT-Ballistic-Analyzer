@@ -204,7 +204,8 @@ int main(int argc, char *argv[])
 						sprintf(index,"%i",i+1);
 						//plotiasc="plot"+string(index)+".asc"; //using Standard Library string constructor
 						//plotiasc="/home/barak/Source_Files/CADAC/Custom/Version7/plot"+string(index)+".asc"; //using Standard Library string constructor
-						plotiasc=string(argv[2]) + "/plot"+string(index)+".asc"; //using Standard Library string constructor
+						//plotiasc=string(argv[2]) + "/plot"+string(index)+".asc"; //using Standard Library string constructor
+						plotiasc="CADAC_6DOF/plot"+string(index)+".asc"; //using Standard Library string constructor
 
 						plot_file_list[i]=plotiasc;
 						name=plotiasc.c_str(); //using string member function to convert to char array 

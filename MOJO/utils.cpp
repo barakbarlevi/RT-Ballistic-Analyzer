@@ -154,7 +154,7 @@ namespace utils
         {
             std::cerr << "Failed to open the file: Primary_Controller.kml" << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            return 1;
+            exit(1);
         }
 
         kml_file << "<kml xmlns=\"http://www.opengis.net/kml/2.2\">\n";
@@ -201,7 +201,7 @@ namespace utils
         {
             std::cerr << "Failed to open the file: Secondary_Controller.kml" << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            //return -1;
+            //exit(1);
             exit(1);
         }
 
@@ -232,7 +232,7 @@ namespace utils
         {
             std::cerr << "Error openning file: " << kml_path << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            return -1;
+            exit(1);
         }
 
         std::string line;
@@ -297,7 +297,7 @@ namespace utils
         {
             std::cerr << "Error openning file: " << kml_path << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            return -1;
+            exit(1);
         }
 
         std::string line;
@@ -342,7 +342,7 @@ namespace utils
         {
             std::cerr << "Failed to open the file: " << kml_path << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            return 1;
+            exit(1);
         }
 
         kml_file.seekp(-20, kml_file.end);
@@ -381,7 +381,7 @@ namespace utils
         {
             std::cerr << "Failed to open the file: " << kml_path << std::endl;
             std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-            return 1;
+            exit(1);
         }
 
         kml_file.seekp(-32, kml_file.end);
