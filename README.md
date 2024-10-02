@@ -32,6 +32,11 @@ For demonstration purposes, assuming that the general viewer doesn't have the ne
 `./MOJO_BINARY` - testest\
 
 4. Send target detections:\
- `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority][IP] [port] [file to open] [period_ns] [priority]` - sdfsdfdsf\
+ `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]` - sdfsdfdsf\
  `./rt_sendDetection_BINARY` - sdfsdfsd
+
+ ### Test
+ `./MOJO_BINARY -f /home/user/Source_Files/RT-Ballistic-Analyzer -j 55443 -h 15001`
+ Open second terminal:
+ `./rt_sendDetection_BINARY -i 127.0.0.1 -j 55443`
 

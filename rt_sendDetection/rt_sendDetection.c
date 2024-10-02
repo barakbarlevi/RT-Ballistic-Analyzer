@@ -165,12 +165,11 @@ int main(int argc, char* argv[])
         struct hostent *hp;
         struct passedArguments_struct data;
 
-        const char* IP = "192.168.0.3"; // Default IP
-        //const char* PORT = "36961"; // Default port    
+        const char* IP = "127.0.0.1"; // Default IP
         int PORT = 36961; // Default port    
         const char* filePath = "rt_sendDetection/V180.asc"; // Default file path
         long period_ns = 15695067.264; // Default period in nanoseconds
-        int rt_priority = 20; // Default POSIX real-time priority
+        int rt_priority = 80; // Default POSIX real-time priority
 
 
         // Check for the maximum number of arguments (5 flags + 5 values)
