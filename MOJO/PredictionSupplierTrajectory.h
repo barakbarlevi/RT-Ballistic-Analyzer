@@ -23,8 +23,11 @@ class PredictionSupplierTrajectory : public Trajectory {
      */
     void appendTrajectoryToKML(int effective_dtPlot, int currentSupplierNumber, int CollectorSize, bool isCollector);
     
+    // xxxx give briefs about these two.
     void setAltData(); 
     std::vector<float> getAltData() {return altData_; };
+    void setTimeData();
+    std::vector<float> getTimeData() {return timeData_; };
 
     protected:
 
@@ -32,6 +35,7 @@ class PredictionSupplierTrajectory : public Trajectory {
 
     private:
 
-    std::vector<float> altData_; // Holds all the altitude values. It's size is constant per trajectory but data_.size() is detemined at run time.
+    std::vector<float> altData_; // Holds the altitude vector, which is a simulation result. It's size is constant per trajectory but data_.size() is detemined at run time.
+    std::vector<float> timeData_; // Holds the time vector, which is a simulation result. It's size is constant per trajectory but data_.size() is detemined at run time.
 
 };

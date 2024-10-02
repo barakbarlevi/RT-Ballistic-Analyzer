@@ -78,29 +78,17 @@ int main(int argc, char* argv[])
     ss.str(homeENV);
     std::string home = ss.str();
 
-    //std::string pathCADAC = home + "/Source_Files/CADAC/Custom/Version7/";
-    std::string pathBaseDir = home + "/RT-Ballistic-Analyzer"; // xxxx
-    //std::string pathCADAC = home + "/CADAC/"; // xxxx
+    std::string pathBaseDir = home + "/RT-Ballistic-Analyzer";
     float heightFirstDetection(15000); // [meters]
     std::regex floatRegex("^[+-]?([0-9]*[.])?[0-9]+$");
 
-    // if (argc == 3) {
-    //     if(!utils::isValidPort(argv[2]))
-    //     {
-    //         std::cerr << "Port number not valid" << std::endl;
-    //         exit(1);
-    //     }
-    //     pathCADAC = std::string(argv[1]) + "/";
-    // }
-
-
+    
     // Process command-line arguments
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
 
         if (arg == "-j") {
             if (i + 1 < argc) {
-                //int userPort = std::stoi(argv[++i]);
                 if(!utils::isValidPort(argv[++i]))
                 {
                     std::cerr << "Port number specified is not valid" << std::endl;
@@ -189,7 +177,6 @@ int main(int argc, char* argv[])
     // class from the Trajectory <- SensorTrajectory <- SensorTrajectory* hierarchy, because we need to know how to parse
     // information in the output file, and the structure of the file may change. Thread receiveDataFromRealtime runs 
     // until the last detection is recevied (ground impact).
-    //std::string detectionKML = pathBaseDir + "/MOJO/DetectionRT.kml"; // xxxx
     std::string detectionKML = "MOJO/DetectionRT.kml";
     SensorTrajectoryCADAC trajectoryFromSensor("RT", detectionKML);
     std::thread receiveDataFromRealtime = trajectoryFromSensor.threadReceiveDataFromRT(syncObject);

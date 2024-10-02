@@ -30,7 +30,6 @@ class SensorTrajectory : public Trajectory {
      *        default number: 36961.
      */
     
-    //int getPortNumber(); // xxxx
     void setPortNumber();
     int getPortNumber() { return this->portNumber_;};
 

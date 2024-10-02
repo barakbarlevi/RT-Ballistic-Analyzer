@@ -193,9 +193,7 @@ namespace utils
     int kmlInitSecondaryController()
     {
         std::ofstream kml_file;
-        kml_file.open("MOJO/Secondary_Controller.kml", std::ios::out | std::ios::binary);
-        //kml_file.open("/home/barak/Source_Files/RT-Ballistic-Analyzer/MOJO/Secondary_Controller.kml", std::ios::out | std::ios::binary); // xxxx
-        
+        kml_file.open("MOJO/Secondary_Controller.kml", std::ios::out | std::ios::binary);       
 
         if (!kml_file.is_open())
         {
@@ -421,12 +419,7 @@ namespace utils
 
 
     void displayUsage() {
-        // xxxx
-    // std::cerr << "Usage option 1: " << Argv[0] << " will use default values for the path to the 6-DOF simulation directory and for the port number." << std::endl;
-    // std::cerr << "Default values: [/home/username/RT-Ballistic-Analyzer/SIX_DOF] , [36961]" << std::endl;
-    // std::cerr << "Usage option 2: " << Argv[0] << " [path] [port] will use the specified values." << std::endl;
-    // std::cerr << "No other usage options available" << std::endl;
-
+    
     std::cout << "Usage: "<< Argv[0] << " -j [port] -f [path] -h [heightFirstDetection]" << std::endl;
     std::cout << "Options:" << std::endl;
     std::cout << "  -j [port]                 Set the port number (1-65535)." << std::endl;

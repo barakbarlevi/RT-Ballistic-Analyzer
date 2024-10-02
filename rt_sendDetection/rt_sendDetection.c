@@ -94,15 +94,16 @@ static void periodic_task_init(struct period_info *pinfo, struct passedArguments
         // and I want it to take 7 seconds to show the entire trjectory,
         // that means a coordinate has to be drawn every 7/446 = 0.015695067 seconds
         // which is 15695067.264 nsec
-        //pinfo->period_ns = 15695067.264; // xxxx 0.5 sec
+
+        //pinfo->period_ns = 15695067.264; // 0.5 sec
         pinfo->period_ns = data_ptr->period_;
-        //pinfo->period_ns = 31390134.528; // xxxx *2
-        //pinfo->period_ns = 47085201.792; // xxxx *3
-        //pinfo->period_ns = 62780269.056; // xxxx *4
-        //pinfo->period_ns = 78475336.32; // xxxx *5
+        //pinfo->period_ns = 31390134.528; // *2
+        //pinfo->period_ns = 47085201.792; // *3
+        //pinfo->period_ns = 62780269.056; // *4
+        //pinfo->period_ns = 78475336.32; // *5
         
-        //pinfo->period_ns = 1000000000; // xxxx 1 sec
-        //pinfo->period_ns = 1000000; // xxxx 1 msec
+        //pinfo->period_ns = 1000000000; // 1 sec
+        //pinfo->period_ns = 1000000; // 1 msec
         
         clock_gettime(CLOCK_MONOTONIC, &(pinfo->next_period));
 }

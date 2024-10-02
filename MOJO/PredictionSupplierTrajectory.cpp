@@ -9,6 +9,13 @@ void PredictionSupplierTrajectory::setAltData() {
     }   
 }
 
+void PredictionSupplierTrajectory::setTimeData() {
+    for (size_t i = this->FirstLineOfNumericData_; i < this->data_.size(); i++) {
+        std::string time = utils::SubStringStartTillReaching(data_[i], ',', 1, 0, i, "PredictionSupplierTrajectory::setTimeData()",false);
+        timeData_.push_back(std::stof(time));
+    }   
+}
+
 void PredictionSupplierTrajectory::appendTrajectoryToKML(int effective_dtPlot, int currentSupplierNumber, int CollectorSize, bool isCollector) {
     
     (void)CollectorSize;

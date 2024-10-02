@@ -38,8 +38,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
 	char buf[1024];
     std::string buf_string;
 	int rval;
-    //int port; // xxxx
-
 
     size_t lastSlashPos = this->kmlPath_.find_last_of('/');
     std::string href;
@@ -53,7 +51,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
         exit(1);
     }
 
-    //utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",this->kmlPath_); // xxxx
     utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",href);
     this->currentDetectionIndex_ = this->FirstLineOfNumericData_;  
 
@@ -83,7 +80,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
     // }
 
     setPortNumber();
-    //std::cout << "Using port: " << getPortNumber() << std::endl; // xxxx
     server.sin_port = htons(getPortNumber());
 
 
@@ -150,8 +146,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
             }   
         } while (syncObject->firstMsgArrived_ == false);
 
-        std::cout << "HERE" << std::endl; // indeed gets here xxxx
-
         // After first message has already been recieved.
         do {
             bzero(buf, sizeof(buf));
@@ -163,7 +157,7 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
             else
                 if(buf[0] == '\0') 
                 {
-                    std::cout << "Got: buf[0] == '\0'" << std::endl; // indeed gets here xxxx
+                    //std::cout << "Got: buf[0] == '\0'" << std::endl;
                     std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
 
                     this->currentDetectionIndex_--;

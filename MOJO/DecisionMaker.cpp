@@ -9,10 +9,12 @@ DecisionMaker::DecisionMaker(std::vector<std::shared_ptr<SuppliersCollector>>* s
 void DecisionMaker::calculate(SyncObject * syncObject) {
 
     int consequtiveConditionCount = 0;
-    float altTolerance = 50;
+    //float altTolerance = 50; // xxxx
+    float altTolerance = 25000;
     float consequtiveConditionCountThreshold = 50;
     collectorsVector_->at(1)->getSuppliersVector().at(0)->setAltData();
     std::vector<float> collector1supplier0alt = collectorsVector_->at(1)->getSuppliersVector().at(0)->getAltData();
+    std::vector<float> collector1supplier0time = collectorsVector_->at(1)->getSuppliersVector().at(0)->getTimeData();
     
     while(syncObject->transmissionEnded_ == false) {
 

@@ -7,7 +7,6 @@ SuppliersCollector::SuppliersCollector(float timeAfterDetectionCreated) {
 
 void SuppliersCollector::plotCollectorAtOnce(int effective_dtPlot) {
 
-    //const char* lastSlash = strrchr(this->collectorKML_, '/'); // Find the last occurrence of '/' // xxxx
     size_t lastSlashPos = this->collectorKML_.find_last_of('/');
     std::string href;
 
