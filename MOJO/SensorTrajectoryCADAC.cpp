@@ -40,7 +40,21 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
 	int rval;
     //int port; // xxxx
 
-    utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",this->kmlPath_);        
+
+    size_t lastSlashPos = this->kmlPath_.find_last_of('/');
+    std::string href;
+
+    if (lastSlashPos != std::string::npos) {
+        // Get the substring starting right after the last '/'
+        href = this->kmlPath_.substr(lastSlashPos + 1);
+    } else {
+        // If there's no '/', the entire string is the result
+        printf("Expecting string: MOJO/CollectorX\n'");
+        exit(1);
+    }
+
+    //utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",this->kmlPath_); // xxxx
+    utils::kmlInsertOneNetworkLink("MOJO/Secondary_Controller.kml",href);
     this->currentDetectionIndex_ = this->FirstLineOfNumericData_;  
 
     std::cout << "Initializing server" << std::endl;

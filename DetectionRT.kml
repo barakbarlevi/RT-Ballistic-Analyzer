@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.opengis.net/kml/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.opengis.net/kml/2.2">
+
+	<Document>
+		 <name>DetectionRT.kml</name>
+
+
+		 <Style id="sn_shaded_dot0">
+			<IconStyle>
+				<color>ff00AAff</color>
+				<scale>0.4</scale>
+				<Icon>
+					<href>http://maps.google.com/mapfiles/kml/shapes/shaded_dot.png</href>
+				</Icon>
+			</IconStyle>
+			<ListStyle></ListStyle>
+		</Style>
+		<Folder>
+			<name>LLAs</name>
+		</Folder>
+	</Document>
+</kml>

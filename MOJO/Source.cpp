@@ -188,7 +188,8 @@ int main(int argc, char* argv[])
     // class from the Trajectory <- SensorTrajectory <- SensorTrajectory* hierarchy, because we need to know how to parse
     // information in the output file, and the structure of the file may change. Thread receiveDataFromRealtime runs 
     // until the last detection is recevied (ground impact).
-    std::string detectionKML = pathBaseDir + "/MOJO/DetectionRT.kml";
+    //std::string detectionKML = pathBaseDir + "/MOJO/DetectionRT.kml"; // xxxx
+    std::string detectionKML = "MOJO/DetectionRT.kml";
     SensorTrajectoryCADAC trajectoryFromSensor("RT", detectionKML);
     std::thread receiveDataFromRealtime = trajectoryFromSensor.threadReceiveDataFromRT(syncObject);
 
@@ -257,7 +258,7 @@ int main(int argc, char* argv[])
             std::shared_ptr<SuppliersCollector> currentCollector = std::make_shared<SuppliersCollector>(std::stof(trajectoryFromSensor.getBITA_Params().BITA_time) - detectionTime);
             suppliersCollectorsVector.push_back(currentCollector);
             
-            currentCollector->setCollectorKML_("Collector" + std::to_string(suppliersCollectorsVector.size() - 1) + ".kml");
+            currentCollector->setCollectorKML_("MOJO/Collector" + std::to_string(suppliersCollectorsVector.size() - 1) + ".kml");
 
             // Iterating over all the airframe model we currently want to check. Those are stored in a std::vector and can be added/removed during the scenario.
             // This loop is representing a single point in time where we sample the detected data, insert it to all relevant simulation input files one by one,
