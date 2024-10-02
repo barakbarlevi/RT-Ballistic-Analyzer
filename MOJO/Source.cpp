@@ -121,8 +121,9 @@ int main(int argc, char* argv[])
             if (i + 1 < argc) {
                 try {
                     
-                    if (std::regex_match(argv[++i], floatRegex)) {
-                        heightFirstDetection = std::stof(argv[++i]);
+                    if (std::regex_match(argv[i + 1], floatRegex)) {
+                        heightFirstDetection = std::stof(argv[i + 1]);
+                        i++;
                         std::cout << "Setting 'heightFirstDetection' from command line: " << heightFirstDetection << std::endl;
                     }
                     else {
