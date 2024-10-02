@@ -111,6 +111,7 @@ namespace utils {
      * @param altTolerance Tolerance, should account for the summation of many uncertainties.
      * @return false if the deviation is greater than the tolerance, true otherwise.
      */
+    
     template<typename Type>
     bool eq(size_t n, std::vector<Type> x, Type y, Type altTolerance) {
         const Type absTolerance = std::abs(altTolerance);
@@ -127,5 +128,8 @@ namespace utils {
 
     bool isValidPort(const std::string& arg);
     void displayUsage();
+
+    template<typename T>
+    std::pair<T, size_t> findClosest(const std::vector<T>& vec, const T& specimen);
 
 }

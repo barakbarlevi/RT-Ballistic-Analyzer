@@ -432,4 +432,25 @@ namespace utils
 
     }
 
+
+    template<typename T>
+    std::pair<T, size_t> findClosest(const std::vector<T>& vec, const T& specimen) {
+        T closest = vec[0];
+        size_t closestIndex = 0;
+        double minDiff = std::numeric_limits<double>::max();
+
+        for (size_t i = 0; i < vec.size(); ++i) {
+            double diff = std::abs(static_cast<double>(vec[i]) - static_cast<double>(specimen));
+            if (diff < minDiff) {
+                minDiff = diff;
+                closest = vec[i];
+                closestIndex = i;
+            }
+        }
+
+        return {closest, closestIndex};
+    }
+
+    template std::pair<float, size_t> findClosest(const std::vector<float>& vec, const float& specimen);
+
 }
