@@ -9,7 +9,7 @@ CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.cpp))
 OBJECTS = $(patsubst %.cpp,%.o,$(CFILES))
 DEPENDS = $(OBJECTS:.o=.d)
 
-EXECUTABLE := MOJO
+EXECUTABLE := ../MOJO_BINARY
 
 all: $(EXECUTABLE)
 
