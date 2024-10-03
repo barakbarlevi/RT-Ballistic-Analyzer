@@ -35,8 +35,31 @@ For demonstration purposes, assuming that the general viewer doesn't have the ne
  `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]` - sdfsdfdsf\
  `./rt_sendDetection_BINARY` - sdfsdfsd
 
- ### Test
- `./MOJO_BINARY -f /home/user/Source_Files/RT-Ballistic-Analyzer -j 55443 -h 15001`
- Open second terminal:
- `./rt_sendDetection_BINARY -i 127.0.0.1 -j 55443`
+#### Examples
+The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
+
+##### Running entirely on an x86_64 machine
+###### Example 1
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`
+Open new terminal
+Divergent trajectory: `./rt_sendDetection_BINARY`
+Non-divergent trajectory: `./rt_sendDetection_BINARY -f rt_sendDetection/V180-Orig.asc`
+
+###### Example 2
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 45454 -h 14739`
+Open new terminal
+`./rt_sendDetection_BINARY -j 45454`
+
+##### Running the rt_sendDetection_BINARY on ARMv7-A
+For example for a host machine with IP 192.168.0.3, Could be any other valid IPv4 address.
+
+###### Example 1
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`
+On target machine:
+`./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -f V180.asc`
+
+###### Example 2
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 55443 -h 14739`
+Open new terminal:
+`./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -j 55443 -f V180-Orig.asc`
 

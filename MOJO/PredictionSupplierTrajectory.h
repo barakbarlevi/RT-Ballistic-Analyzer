@@ -23,11 +23,15 @@ class PredictionSupplierTrajectory : public Trajectory {
      */
     void appendTrajectoryToKML(int effective_dtPlot, int currentSupplierNumber, int CollectorSize, bool isCollector);
     
-    // xxxx give briefs about these two.
+    /**
+     * @brief A 'PredictionSupplierTrajectory' is a prepared simulation result. These set and get functions assign and return
+     *        std::vectors which contain such results for time and altitude of a particular simulated trajectory.
+     */
     void setAltData(); 
     std::vector<float> getAltData() {return altData_; };
     void setTimeData();
     std::vector<float> getTimeData() {return timeData_; };
+    /**/
 
     protected:
 

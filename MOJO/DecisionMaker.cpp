@@ -9,7 +9,6 @@ DecisionMaker::DecisionMaker(std::vector<std::shared_ptr<SuppliersCollector>>* s
 void DecisionMaker::calculate(SyncObject * syncObject) {
 
     int consequtiveConditionCount = 0;
-    //float altTolerance = 50; // xxxx
     float altTolerance = 2000;
     float consequtiveConditionCountThreshold = 5;
     float currentTime;
@@ -20,54 +19,36 @@ void DecisionMaker::calculate(SyncObject * syncObject) {
 
     // Add constants to each element in the vector
     for (auto& value : collector1supplier0time) {
-        value += sensorTrajectory_->getDetectionMoment() + collectorsVector_->at(1)->getTimeAfterDetectionCreated();  // xxxx the lie is here, write it
+        value += sensorTrajectory_->getDetectionMoment() + collectorsVector_->at(1)->getTimeAfterDetectionCreated();  // Here lies a cheat. In reality, we don't know the value of sensorTrajectory_->getDetectionMoment(). It can be estimated.
     }
 
-    // xxxx
-    std::ofstream writeout;
-    writeout.open("MOJO/writeout.txt", std::ios::out | std::ios::binary);
+    // std::ofstream writeout;
+    // writeout.open("MOJO/writeout.txt", std::ios::out | std::ios::binary);
+    // if (!writeout.is_open())
+    // {
+    //     std::cerr << "Failed to open the file: writeout.txt" << std::endl;
+    //     std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
+    //     exit(1);
+    // }
 
-    if (!writeout.is_open())
-    {
-        std::cerr << "Failed to open the file: writeout.txt" << std::endl;
-        std::cerr << "open() failed: " << std::strerror(errno) << std::endl;
-        exit(1);
-    }
-
-    
     while(syncObject->transmissionEnded_ == false) {
-
-        //printf("Entered while(syncObject->transmissionEnded_ == false)\n");
 
         std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
 
         //std::cout << "Right before wait(). syncMsgStoreAndRead_ready_: " << syncObject->syncMsgStoreAndRead_ready_ << ". syncObject->transmissionEnded_:" << syncObject->transmissionEnded_ << std::endl;
-        
         syncObject->syncMsgStoreAndRead_cv_.wait(ul, [&](){ return (syncObject->syncMsgStoreAndRead_ready_); });
 
         sensorTrajectory_->setBITA_Params();
-        writeout << "Right after sensorTrajectory_->setBITA_Params(). sensorTrajectory_->getBITA_Params().BITA_time: " << sensorTrajectory_->getBITA_Params().BITA_time << std::endl; // xxxx
+        //writeout << "Right after sensorTrajectory_->setBITA_Params(). sensorTrajectory_->getBITA_Params().BITA_time: " << sensorTrajectory_->getBITA_Params().BITA_time << std::endl;
 
         currentTime = std::stof(sensorTrajectory_->getBITA_Params().BITA_time);
         auto [closestElement, index] = utils::findClosest(collector1supplier0time, currentTime);
 
-        writeout << "{Closest element, index} in collector1supplier0time: {" << closestElement << "," << index << "}" << ". currentTime: " << currentTime << std::endl; // xxxx
+        //writeout << "{Closest element, index} in collector1supplier0time: {" << closestElement << "," << index << "}" << ". currentTime: " << currentTime << std::endl;
 
         if(std::abs(sensorTrajectory_->getCurrentAlt() - collector1supplier0alt.at(index)) > std::abs(altTolerance))  {
             consequtiveConditionCount++;
-
-
-        
-            writeout << "Term in collector1supplier0alt: " << collector1supplier0alt.at(index) << std::endl;
-            writeout << "getCurrentAlt() : " << sensorTrajectory_->getCurrentAlt() << std::endl;
-            writeout << "Their abs difference: " << std::abs(collector1supplier0alt.at(index) - sensorTrajectory_->getCurrentAlt()) << std::endl;
-
-
-            // std::cout << "Term in collector1supplier0alt: " << collector1supplier0alt.at(index) << std::endl;
-            // std::cout << "getCurrentAlt() : " << sensorTrajectory_->getCurrentAlt() << std::endl;
-            // std::cout << "Their abs difference: " << std::abs(collector1supplier0alt.at(index) - sensorTrajectory_->getCurrentAlt()) << std::endl;
         }
-        //if(!utils::eq(collector1supplier0alt.size(), collector1supplier0alt, sensorTrajectory_->getCurrentAlt(), altTolerance)) { consequtiveConditionCount++; }
         else consequtiveConditionCount = 0;    
 
 

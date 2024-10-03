@@ -44,10 +44,6 @@ with little adjustments to meet their required metadata structure.
 https://geosoft.no/development/cppstyle.html.
 =============================================================================*/
 
-// xxxx
-// xxxx delete //std::string pathCADAC = home + "/CADAC/"; // xxxx
-// xxxx clean green trajectory?
-
 #include <regex>
 #include "PredictionSupplierCADAC.h"
 #include "DecisionMaker.h"

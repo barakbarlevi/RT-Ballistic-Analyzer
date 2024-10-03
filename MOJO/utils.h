@@ -112,19 +112,6 @@ namespace utils {
      * @return false if the deviation is greater than the tolerance, true otherwise.
      */
     
-    template<typename Type>
-    bool eq(size_t n, std::vector<Type> x, Type y, Type altTolerance) {
-        const Type absTolerance = std::abs(altTolerance);
-        for(unsigned int i = 0; i < n; ++i) {
-            if (std::abs(x.at(i)-y) > absTolerance) {
-                std::cout << "Term in collector1supplier0alt: " << x.at(i) << std::endl;
-                std::cout << "getCurrentAlt() : " << y << std::endl;
-                std::cout << "Their abs difference: " << std::abs(x.at(i)-y) << std::endl;
-                return false;
-            }
-        }
-        return true;
-    }
 
     bool isValidPort(const std::string& arg);
     void displayUsage();
