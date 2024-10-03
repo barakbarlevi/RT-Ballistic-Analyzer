@@ -59,7 +59,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
     //Create socket
     sock = socket(AF_INET, SOCK_STREAM, 0); // Create a socket that runs use the INET address family. the IP version 4. For a stream.
     if (sock < 0) {
-	 //perror("error: opening stream socket");
      std::cerr << "error opening stream socket: " << std::strerror(errno) << std::endl;
 	 exit(1);
     }
@@ -67,25 +66,12 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
     server.sin_family = AF_INET;
     server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = 0;
-    //server.sin_port = htons(36961);
-
-    // try {
-    //     port = getPortNumber();
-    // } catch (const std::invalid_argument& e) {
-    //     std::cerr << "Caught exception in main: " << e.what() << ". Please inset a suitable integer port number." << std::endl;
-    //     exit(1); // Return a non-zero value to indicate an error
-    // } catch (const std::out_of_range& e) {
-    //     std::cerr << "Caught exception in main: " << e.what() << ". Please inset a suitable integer port number." << std::endl;
-    //     exit(1); // Return a non-zero value to indicate an error
-    // }
-
     setPortNumber();
     server.sin_port = htons(getPortNumber());
 
 
     // The server has to bind a name on to its socket so that we can know what its address and port are, to tell clients.
     if (bind(sock, (sockaddr*)&server, sizeof(server))) {
-	 //perror("error: binding stream socket");
      std::cerr << "error binding stream socket: " << std::strerror(errno) << std::endl;
 	 exit(1);
     }
@@ -94,7 +80,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
 
     // getsockname - If you have a socket, and you want to know the name it's bound onto it, like the address and the port, we can get it with the function. It will change the arguments, passed as pointers.
     if (getsockname(sock, (sockaddr*)&server, &length)) {
-	 //perror("error: getting socket name");
      std::cerr << "error getting socket name: " << std::strerror(errno) << std::endl;
 	 exit(1);
     }
@@ -109,7 +94,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
         printf("Still waiting. Haven't received first message yet\n");
 	    msgsock = accept(sock, 0, 0); // Will block, waiting for a client to do a connect to the address with port from above.
 	    if (msgsock == -1)
-	        //perror("error: accept");
             std::cerr << "error in accept(): " << std::strerror(errno) << std::endl;
 	    else do {
 	        bzero(buf, sizeof(buf)); // From John Winan's commentary: aweful. they've (4.4BSD IPC Tutorial) zeroed out this entire buffer every time
@@ -128,7 +112,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
             // will always be room for a null at the end of whatever you recieved and down at the printf(%s,buf) statement. could have
             // said buf[rval] = 0. putting 1 null byte here is more efficient than putting a thousand in there every time u go around this loop. 
             if ((rval = read(msgsock, buf, 1024)) < 0) // In this case the fd is a socket, that was returned by accept(). read from my endpoint of this streaming socket, put the data_ inside buf. will read up to 1024 bytes.
-                //perror("error: reading stream message");
                 std::cerr << "error reading stream message: " << std::strerror(errno) << std::endl;
             if (rval == 0) // got EOF
                 printf("Ending connection\n");
@@ -150,7 +133,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
         do {
             bzero(buf, sizeof(buf));
             if ((rval = read(msgsock, buf, 1024)) < 0)
-                //perror("error: reading stream message");
                 std::cerr << "error reading stream message: " << std::strerror(errno) << std::endl;
             if (rval == 0) // got EOF
                 printf("Ending connection\n");
@@ -221,8 +203,6 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
         close(msgsock);
         printf("Closed msgsock\n");
         this->currentDetectionIndex_--;
-        //printf("Decremented currentDetectionIndex_ by 1\n");
-
         
     } while (syncObject->transmissionEnded_ == false);
 

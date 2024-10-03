@@ -19,8 +19,18 @@ target detections and simulation output against each other. This background
 process can implement any logic coded into it, its purpose is to send a
 notification when some programmer-defined conditions have been met.
 
-Input: The program isn't provided input parameters. It listens on a socket, and
-handles data arriving on it.
+Usage and inputs: 
+./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]
+
+    Options:
+    -j [port]                 Set the port number (1-65535)." << std::endl;
+    -f [path]                 Specify the path to the base directory RT-Ballistic-Analyzer" << std::endl;
+    -h [heightFirstDetection] Set the height for first detection in meters (float value)." << std::endl;
+
+        Default values:
+        port: 36961
+        path: /home/username/RT-Ballistic-Analyzer
+        heightFirstDetection: 15000
 
 Output: The program doesn't return a value other than '0' for success. If 
 specified conditions relating the target track data and the simulation output
@@ -40,8 +50,9 @@ motion through the air for the momentary initial conditions. The term
 supplier of predictions is the CADAC++ simulation. It's written in a way
 that easily allows anyone to add other simulations as a source of information,
 with little adjustments to meet their required metadata structure.
-3. An effort was made to work according to coding conventions given in
+3. An effort was made to follow coding conventions given in
 https://geosoft.no/development/cppstyle.html.
+
 =============================================================================*/
 
 #include <regex>
@@ -69,6 +80,7 @@ int main(int argc, char* argv[])
         exit(1);
     }
 
+    // Assign default values for base directory path, height at the detection beginning.
     char* homeENV = getenv("HOME");
     std::stringstream ss;
     ss.str(homeENV);
@@ -79,7 +91,7 @@ int main(int argc, char* argv[])
     std::regex floatRegex("^[+-]?([0-9]*[.])?[0-9]+$");
 
     
-    // Process command-line arguments
+    // Process command-line arguments - begin
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
 
@@ -132,19 +144,18 @@ int main(int argc, char* argv[])
             exit(1);
         }
     }
-
+    // Process command-line arguments - end
+    
 
     std::cout << "Using base directory path: " << pathBaseDir << std::endl;
     int effective_dtPlot = 2;
-    
-    
+        
     // Create a window background thread. Joined at the end of the program, after ground impact.
     pthread_t windowThread;
     SyncObject *syncObject = new SyncObject();
     pthread_create( &windowThread, NULL, windowWork, (void*) syncObject);
     
     
-
     // The next four assignments can be thought of storing the data for the simulated trajectories in a table, that has constant columns and rows that can change throught the duration of the scenario.
     // We have column 'predictionSuppliers', where each row element is the name of the simulation 'supplying' ballistic trajectories forecasts.
     // Column 'currentCollectorPriamryInputFiles' lists the paths to simulations input files.
@@ -191,9 +202,7 @@ int main(int argc, char* argv[])
         // sampled state vector elements of the detected target, is met. This condtion could be set by the user, and should only rely on
         // detectable parameters. In the example below, we iterate until a certain height at ascent is reached. State vector (position, velocity, etc)
         // is sampled in synchronization with incoming detections: receive message -> sample -> receive message -> sample ....
-
         
-        //while ((std::stof(trajectoryFromSensor.BITA_Params_.BITA_height) < heightFirstDetection) && (trajectoryFromSensor.get_vVertical() <= 0))
         while ((std::stof(trajectoryFromSensor.getBITA_Params().BITA_height) < heightFirstDetection) && (trajectoryFromSensor.get_vVertical() <= 0))
         {
             std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);

@@ -266,14 +266,14 @@ void Hyper::vehicle_data(fstream &input,int nmonte)
 			if(!strcmp(read,"WEATHER_DECK")){
 				//reading weather-deck file name
 				
-				//std::cout << "(Barak xxxx delete) input: " << input.rdbuf() << std::endl;
+				//std::cout << "(Barak xxxx) input: " << input.rdbuf() << std::endl;
 				input>>file_name;
-				//std::cout << "(Barak xxxx delete) input: " << input.rdbuf() << std::endl;
+				//std::cout << "(Barak xxxx) input: " << input.rdbuf() << std::endl;
 				input.getline(line_clear,CHARL,'\n');
 
-				//std::cout << "(Barak xxxx delete) file name: " << file_name << std::endl;
-				//std::cout << "(Barak xxxx delete) input: " << input.rdbuf() << std::endl;
-				//printf("(Barak xxxx delete) file_name: %s\n", file_name);
+				//std::cout << "(Barak xxxx) file name: " << file_name << std::endl;
+				//std::cout << "(Barak xxxx) input: " << input.rdbuf() << std::endl;
+				//printf("(Barak xxxx) file_name: %s\n", file_name);
 				read_tables(file_name,weathertable);
 			}
 

@@ -36,6 +36,10 @@ class SensorTrajectory : public Trajectory {
     void setDetectionMoment(float value) { detectionMoment_ = value;};
     float getDetectionMoment() { return this->detectionMoment_;};
 
+    void setReachedheightFirstDetection(const bool& value) {reachedheightFirstDetection_ = value;}
+    bool getReachedheightFirstDetection_() {return reachedheightFirstDetection_;}
+    
+
     /**
      * @brief Set the trajectory's momentary 'BITA_Params_', as received over the network.
      *        The way of parsing the incoming data into 'BITA_Params' is specific to the source of information.
@@ -69,5 +73,6 @@ class SensorTrajectory : public Trajectory {
 
     int portNumber_ = 36961;
     float detectionMoment_; // [sec]. In the detected target's own timescale, time passed until detection starts. In reality, this remains unknown, can be estimated.
-    
+    bool reachedheightFirstDetection_ = false;
+
 };

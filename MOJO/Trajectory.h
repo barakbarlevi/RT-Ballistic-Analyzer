@@ -29,9 +29,7 @@ class Trajectory {
      */
     virtual void setSingleCoordsLine() = 0;
     
-    bool getReachedheightFirstDetection_() {return reachedheightFirstDetection_;}
     BITA_params getBITA_Params() {return BITA_Params_;}
-    void setReachedheightFirstDetection(const bool& value) {reachedheightFirstDetection_ = value;}
     void setLoadPath(const std::string& value) {loadPath_ = value;}
     void set_kmlPath(const std::string& value) {kmlPath_ = value;}
 
@@ -48,7 +46,5 @@ class Trajectory {
     int FirstLineOfNumericData_; // Output files for different simulations vary in their structure. The program reads the file line by line. This is the index of the first line containing numerical values to parse.
 
     private:
-
-    bool reachedheightFirstDetection_ = false;
     
 };
