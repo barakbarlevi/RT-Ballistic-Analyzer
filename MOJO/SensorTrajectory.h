@@ -33,6 +33,9 @@ class SensorTrajectory : public Trajectory {
     void setPortNumber();
     int getPortNumber() { return this->portNumber_;};
 
+    void setDetectionMoment(float value) { detectionMoment_ = value;};
+    float getDetectionMoment() { return this->detectionMoment_;};
+
     /**
      * @brief Set the trajectory's momentary 'BITA_Params_', as received over the network.
      *        The way of parsing the incoming data into 'BITA_Params' is specific to the source of information.
@@ -65,5 +68,6 @@ class SensorTrajectory : public Trajectory {
     private:
 
     int portNumber_ = 36961;
+    float detectionMoment_; // [sec]. In the detected target's own timescale, time passed until detection starts. In reality, this remains unknown, can be estimated.
     
 };

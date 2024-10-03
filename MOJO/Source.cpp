@@ -219,7 +219,8 @@ int main(int argc, char* argv[])
 
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
         std::cout << "Reached " << heightFirstDetection << "[m], at currentDetectionIndex: " << trajectoryFromSensor.getCurrentDetectionIndex() << std::endl;
-        float detectionTime = std::stof(trajectoryFromSensor.getBITA_Params().BITA_time);
+        float detectionMoment = std::stof(trajectoryFromSensor.getBITA_Params().BITA_time);
+        trajectoryFromSensor.setDetectionMoment(detectionMoment);
         trajectoryFromSensor.setReachedheightFirstDetection(true);
 
     #endif
@@ -243,7 +244,7 @@ int main(int argc, char* argv[])
 
         do
         {
-            std::shared_ptr<SuppliersCollector> currentCollector = std::make_shared<SuppliersCollector>(std::stof(trajectoryFromSensor.getBITA_Params().BITA_time) - detectionTime);
+            std::shared_ptr<SuppliersCollector> currentCollector = std::make_shared<SuppliersCollector>(std::stof(trajectoryFromSensor.getBITA_Params().BITA_time) - detectionMoment);
             suppliersCollectorsVector.push_back(currentCollector);
             
             currentCollector->setCollectorKML_("MOJO/Collector" + std::to_string(suppliersCollectorsVector.size() - 1) + ".kml");

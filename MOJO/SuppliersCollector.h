@@ -23,7 +23,10 @@ class SuppliersCollector {
      * @brief For visualiztion purposes, add all the trajectories stored in 'suppliersVector_' to Google Earth.
      * @param effective_dtPlot Additional control over plot intervals, on top of the simulation output writing interval. 
      */
+
     void plotCollectorAtOnce(int effective_dtPlot);
+
+    float getTimeAfterDetectionCreated() { return timeAfterDetectionCreated_; }
 
 
     protected:

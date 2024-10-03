@@ -10,13 +10,18 @@ void DecisionMaker::calculate(SyncObject * syncObject) {
 
     int consequtiveConditionCount = 0;
     //float altTolerance = 50; // xxxx
-    float altTolerance = 25000;
-    float consequtiveConditionCountThreshold = 50;
+    float altTolerance = 2000;
+    float consequtiveConditionCountThreshold = 5;
     float currentTime;
     collectorsVector_->at(1)->getSuppliersVector().at(0)->setAltData();
     collectorsVector_->at(1)->getSuppliersVector().at(0)->setTimeData();
     std::vector<float> collector1supplier0alt = collectorsVector_->at(1)->getSuppliersVector().at(0)->getAltData();
     std::vector<float> collector1supplier0time = collectorsVector_->at(1)->getSuppliersVector().at(0)->getTimeData();
+
+    // Add constants to each element in the vector
+    for (auto& value : collector1supplier0time) {
+        value += sensorTrajectory_->getDetectionMoment() + collectorsVector_->at(1)->getTimeAfterDetectionCreated();  // xxxx the lie is here, write it
+    }
 
     // xxxx
     std::ofstream writeout;
@@ -82,11 +87,15 @@ void DecisionMaker::calculate(SyncObject * syncObject) {
         if (consequtiveConditionCount >= consequtiveConditionCountThreshold) {
             std::cout << "consequtiveConditionCount >= 5" << std::endl;
             printf("Signaling color\n");
+            syncObject->condition_boolean_color_ = true;
             pthread_cond_signal(&syncObject->condition_variable_color_);
             pthread_mutex_unlock(&syncObject->condition_lock_color_);
             printf("At this stage window should change color to red\n");
         }        
     }
+
+    pthread_cond_signal(&syncObject->condition_variable_color_);
+    pthread_mutex_unlock(&syncObject->condition_lock_color_);
 
     std::cout << "syncObject->transmissionEnded_:" << syncObject->transmissionEnded_ << std::endl;
     std::cout << "DecisionMaker::calculate finished" << std::endl;

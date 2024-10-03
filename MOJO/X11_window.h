@@ -117,21 +117,44 @@ static void draw_screen (SyncObject *syncObject)
     XDrawString (text_box.display, text_box.window, text_box.gc,
                 x, y, text_box.text, text_box.text_len);
     XSync(text_box.display, false);
+
+
+
     
+    
+    // //printf("Here before wait line\n");
+    // if(!syncObject->condition_boolean_color_)
+    // {
+    //     pthread_cond_wait(&syncObject->condition_variable_color_, &syncObject->condition_lock_color_);
+    //     //printf("Here after wait line for color\n");
+    //     XSetWindowBackground(text_box.display, text_box.window, text_box.red); 
+    //     XClearWindow(text_box.display, text_box.window);
+    //     printf("Right before XDrawString for red\n");
+    //     XDrawString (text_box.display, text_box.window, text_box.gc,
+    //             x, y, text_box.text2, text_box.text_len2);
+    //     XSync(text_box.display, false);
+    //     syncObject->condition_boolean_color_ = true;
+    //     pthread_mutex_unlock(&syncObject->condition_lock_color_);
+    // }
     //printf("Here before wait line\n");
-    if(!syncObject->condition_boolean_color_)
+    
+    pthread_cond_wait(&syncObject->condition_variable_color_, &syncObject->condition_lock_color_);
+    if(syncObject->condition_boolean_color_)
     {
-        pthread_cond_wait(&syncObject->condition_variable_color_, &syncObject->condition_lock_color_);
-        //printf("Here after wait line for color\n");
         XSetWindowBackground(text_box.display, text_box.window, text_box.red); 
         XClearWindow(text_box.display, text_box.window);
         printf("Right before XDrawString for red\n");
         XDrawString (text_box.display, text_box.window, text_box.gc,
                 x, y, text_box.text2, text_box.text_len2);
-        XSync(text_box.display, false);
-        syncObject->condition_boolean_color_ = true;
-        pthread_mutex_unlock(&syncObject->condition_lock_color_);
     }
+    XSync(text_box.display, false);
+    //syncObject->condition_boolean_color_ = true;
+    pthread_mutex_unlock(&syncObject->condition_lock_color_);
+    
+
+
+
+
     
     pthread_cond_wait(&syncObject->condition_variable_finished_, &syncObject->condition_lock_finished_);
     pthread_mutex_unlock(&syncObject->condition_lock_finished_);
