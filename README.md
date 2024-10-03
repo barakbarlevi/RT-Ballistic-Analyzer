@@ -7,8 +7,8 @@ XXXX GIF
 
 The application comprises 3 parts:
 1. **rt_sendDetection** - Acting as a client, this program sends the entire contents of a .asc file one line after the other in a periodic fashion, via a unix socket to the host machine, until EOF is reached. The periodicity simulates live target tracking. Intended to run as a real-time task on an ARM Cortex®‑A7. Can be run on x86_64 as well.
-2. **SIX_DOF** - A Six Degrees of Freedom simulation for an unguided rocket. Based on the open source CADAC simulation by Prefessor Petel Zipfel.
-3. **MOJO** - Acting as a server, synchronously reads and compares track data to the results of the 6-DOF, while interfacing with Google Earth. Runs the background thread that alerts when irregularities are detected.
+2. **SIX_DOF** - A Six Degrees of Freedom simulation for an unguided rocket. Based on the open source CADAC simulation by Professor Petel Zipfel.
+3. **MOJO** - Acting as a server, synchronously reads and compares track data to the results of the 6DOF, while interfacing with Google Earth. Runs the background thread that alerts when irregularities are detected.
 
 ### Requirements
 A Unix-like system with support for POSIX threads.
