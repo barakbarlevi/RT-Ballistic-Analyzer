@@ -68,7 +68,7 @@ port: 36961
 path: rt_sendDetection/V180.asc
 period_ns = 15695067.264
 ```
-On when running in a real-time environment is rt_priority used, and then its default value is:\
+Only when running in a real-time environment is rt_priority used, and then its default value is:\
 `rt_priority = 80`\
 Setting real-time attributes is commented out in `rt_sendDetection/rt_sendDetection.c`, and can be uncommented when needed.
 
