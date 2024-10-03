@@ -27,10 +27,10 @@ This should execute three Makefiles sequentially, one for each of the parts ment
 In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is needed. See this documentation xxxx or check online for cross compiling for ARM Cortex®‑A7.\
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
-### Usage
+### Usage & Examples
 ###### 1. Open Google Earth
 Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
-###### 2. Navigate to the launch point site
+###### 2. Navigate Earth to the launch point site
 By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
 ###### 3. Start the server
 `./MOJO_BINARY` , or:\
@@ -67,12 +67,12 @@ port: 36961
 path: rt_sendDetection/V180.asc
 period_ns = 15695067.264
 ```
-rt_priority only used when running in a real-time environment, and then its default is:
-`rt_priority = 80`
+On when running in a real-time environment is rt_priority used, and then its default value is:\
+`rt_priority = 80`\
 Setting real-time attributes is commented out in `rt_sendDetection/rt_sendDetection.c`, and can be uncommented when needed.
 
 
-### Examples
+#### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
 
 ##### Running entirely on an x86_64 machine
@@ -93,12 +93,12 @@ Open a new terminal.\
 Host machine with IP 192.168.0.3, Could be any other valid IPv4 address.
 
 ###### Example 1
-`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`
-On target machine:
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`\
+On target machine:\
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -f V180.asc`
 
 ###### Example 2
-`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 55443 -h 14739`
-On target machine:
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 55443 -h 14739`\
+On target machine:\
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -j 55443 -f V180-Orig.asc`
 
