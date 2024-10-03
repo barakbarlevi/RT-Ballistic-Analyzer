@@ -60,6 +60,7 @@ void Round6::def_kinematics()
 
 void Round6::init_kinematics(double sim_time,double int_step)
 {	
+	(void)int_step; // xxxx
 	//local module-variables
 	double time(0);
 	//double int_step_new(0);
@@ -76,6 +77,7 @@ void Round6::init_kinematics(double sim_time,double int_step)
 	double latx=round6[31].real();  
 	double alt=round6[32].real();   
 	double dvbe=round6[35].real();   
+	(void)dvbe; // xxxx
 	//-------------------------------------------------------------------------
 	//setting vehicle time to simulation time
 	time=sim_time;
@@ -152,7 +154,9 @@ void Round6::kinematics(double sim_time, double& int_step)
 	time=sim_time;
 	
 	double udivV(0);
+	(void)udivV; // xxx
 	double wdivu(0);
+	(void)wdivu; // xxxx
 
 	//----------------------------------------------------------------------------
 	//*integrating direction cosine matrix

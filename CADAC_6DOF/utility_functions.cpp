@@ -1571,6 +1571,7 @@ Matrix cad_in_geo84(const double lon,const double lat,const double alt
 	double clon=cos(lon_cel);
 	double sbid1=SBID.get_loc(0,0);
 	double sbid2=SBID.get_loc(1,0);
+	(void)sbid2; // xxxx
 	double sbid3=SBID.get_loc(2,0);
     double sbii1=-slat*clon*sbid1-clat*clon*sbid3;
     double sbii2=-slat*slon*sbid1-clat*slon*sbid3;
@@ -1785,6 +1786,7 @@ int cad_kepler1(Matrix &SPII,Matrix &VPII, Matrix SBII,Matrix VBII,const double 
 	double de2=1+2*en*h*h/(GM*GM);
 	if(de2<0)de2=0;
 	double de=sqrt(de2); //eccentricity
+	(void)de; // xxxx
 	double dum=SBII^VBII;
 		double sqrt_GM=sqrt(GM);
 
@@ -1815,6 +1817,7 @@ int cad_kepler1(Matrix &SPII,Matrix &VPII, Matrix SBII,Matrix VBII,const double 
 
 	//dignostics: if one=1  f and g variables are ok
 	double one=f*gd-fd*g;
+	(void)one; // xxxx
 	
 	//diagnostic: bad iteration if count20 > 20 
 	if(count20>20) iter_flag=1;
@@ -2010,6 +2013,9 @@ int cad_orb_in(double &semi,double &ecc,double &inclx,double &lon_anodex
 Matrix cad_tdi84(const double &lon,const double &lat,const double &alt
 			  ,const double &time)
 {
+	// xxxx
+	(void)alt;
+	
 	Matrix TDI(3,3);
 
 	//celestial longitude of vehicle at simulation 'time' 

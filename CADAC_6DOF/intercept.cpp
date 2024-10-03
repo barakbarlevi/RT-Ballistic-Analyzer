@@ -33,11 +33,19 @@ void Hyper::def_intercept()
 
 void Hyper::intercept(int num_vehicles,int vehicle_slot,double int_step,const char * title, int* phealth)
 {
+	(void) int_step; // xxxx
+	(void) title; // xxxx
+	(void) vehicle_slot; // xxxx
+	(void) num_vehicles; // xxxx
 	double time=round6[0].real();
+	(void) time; // xxxx
 	double alt=round6[32].real();
 	double dvbe=round6[35].real();
+	(void) dvbe; // xxxx
 	double psivdx=round6[37].real();
+	(void) psivdx; // xxxx
 	double thtvdx=round6[38].real();
+	(void) thtvdx; // xxxx
 	double thrust = hyper[3].real();
 
 	//ground impact

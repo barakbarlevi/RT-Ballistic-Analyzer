@@ -44,6 +44,7 @@ void Hyper::forces()
 	//localizing module-variables
 	//input from other modules
 	double time=round6[0].real();
+	(void)time; // xxxx
 	double pdynmc=round6[4].real();
 	double thrust=hyper[3].real();
 	double refa=hyper[26].real();

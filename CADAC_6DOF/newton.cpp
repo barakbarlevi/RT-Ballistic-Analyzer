@@ -81,6 +81,7 @@ void Round6::init_newton()
 	double thtbdx=round6[15].real();
 	double phibdx=round6[16].real();
 	double alpha0x(0);	
+	(void)alpha0x; //xxxx
 	double beta0x=(0);	
 	//-----------------------------------------------------------------------------
 	//Earth's angular velocity skew-symmetric matrix (3x3)
@@ -159,6 +160,7 @@ void Round6::newton(double int_step)
 	double latx(0);
 	double alt(0);
 	double altx(0);
+	(void)altx;
 	double psivdx(0);
 	double thtvdx(0);
 	Matrix FSPB(3,1);
@@ -167,7 +169,9 @@ void Round6::newton(double int_step)
 	double ayx(0);
 	double dbi(0);
 	double gndtrkmx(0);
+	(void)gndtrkmx;
 	double gndtrnmx(0);
+	(void)gndtrnmx;
 	Matrix TVD(3,3);
 	Matrix VBED(3,1);
 	

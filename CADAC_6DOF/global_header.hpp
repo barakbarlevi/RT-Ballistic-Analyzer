@@ -66,6 +66,7 @@ public:
 		strcpy(name,"empty");
 		error[0]=' ';error[1]='\0';
 		int dum=1;
+		(void)dum; // xxxx
 	}; 
 	~Variable(){};
 //////////////////////////// Protopypes ///////////////////////////////////////

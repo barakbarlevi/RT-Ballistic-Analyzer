@@ -70,6 +70,7 @@ void acquire_timing(fstream& input, double& plot_step, double& int_step);
 
 int main(int argc, char *argv[]) 
 {
+	(void)argc; // xxxx
 	std::chrono::steady_clock::time_point begin = std::chrono::steady_clock::now(); 
 	double sim_time(0); //simulation time, same as 'time'
 	char title[CHARL]=""; //title from first line of 'input.asc'
@@ -338,9 +339,12 @@ void execute(Vehicle& vehicle_list, Module* module_list, double sim_time,
 	double int_step, const char* options, ofstream* plot_ostream_list,
 	const char* title, int nmonte, int nmc)
 {
+	(void)nmc; // xxxx
+	(void)nmonte; // xxxx
 	double plot_time(0);
 	int vehicle_slot(0);
 	bool increment_plot_time(false);
+	(void)increment_plot_time; // xxxx
 	bool plot_merge(false);
 	int health(1);
 	int* phealth = &health;

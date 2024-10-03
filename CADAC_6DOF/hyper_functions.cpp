@@ -32,6 +32,7 @@ void Hyper::sizing_arrays()
 	const char * key2="scrn";
 	const char * key3="plot";
 	const char * key4="com";
+	(void) key4; // xxxx
 	int round6_full_count=0;
 	int hyper_full_count=0;
 
@@ -166,21 +167,33 @@ void Hyper::vehicle_data(fstream &input,int nmonte)
 	const char * integer=NULL;
 	int int_data(0);
 	char buff2[CHARN];
-	int file_ptr=NULL;
+	(void)buff2; // xxxx
+	//int file_ptr=NULL;
+	int file_ptr=-1; // xxxx
+	(void)file_ptr; // xxxx
 	char name[CHARN];
+	(void)name; // xxxx
 	Variable *variable=NULL;
+	(void)variable; // xxxx
 	double value(0);
 	char oper;
+	(void)oper; // xxxx
 	int e=0;
+	(void)e; // xxxx
 	const char * watchpoint=NULL;
+	(void)watchpoint; // xxxx
 	double first(0);
 	double second(0);
 	char name1[CHARN];
 	int count1(0);
+	(void)count1; // xxxx
 	int i(0);
 	int ii(0);
+	(void)ii; // xxxx
 	int m(0);
+	(void)m; // xxxx
 	int k(0);
+	(void)k; // xxxx
 	int kk(0);
 
 	input.getline(hyper6_name,CHARL,'\n');
@@ -430,6 +443,7 @@ void Hyper::vehicle_data(fstream &input,int nmonte)
 ///////////////////////////////////////////////////////////////////////////////
 void Hyper::plot_banner(ofstream &fplot,const char * title)
 {
+	(void)title; // xxxx
 	const char * buff1=NULL;
 	char buff2[15];
 	int label_length=13;
@@ -708,8 +722,11 @@ void Hyper::read_tables(const char * file_name,Datadeck &datatable)
 	string table_deck_title;
 	int table_count(0);
 	int table_dim(0);
+	(void)table_dim; // xxxx
 	double value(0);
-	int file_ptr=NULL;
+	//int file_ptr=NULL;
+	int file_ptr=-1; // xxxx
+	(void)file_ptr; // xxxx
 	int var_dim[3]={1,1,1,};
 	int tt(0);
 
@@ -766,8 +783,10 @@ void Hyper::read_tables(const char * file_name,Datadeck &datatable)
 		//std::cout << "He says at this point 'temp' is holding xDIM. temp is: " << temp << std::endl;	// XXXX
 
 		int dim_check(0);
+		(void)dim_check; // xxxx
 		char dim_buff[2]{};
 		int table_dim(0);
+		(void)table_dim; // xxxx
 
 		// xxxx
 		// std::cout << "temp's address in memory is: " << &temp << std::endl;	// XXXX

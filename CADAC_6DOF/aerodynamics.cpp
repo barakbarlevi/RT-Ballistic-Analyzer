@@ -106,6 +106,7 @@ void Hyper::init_aerodynamics()
 
 void Hyper::aerodynamics(double int_step)
 {
+	(void)int_step; // xxxx
 	//local variable
 	int thrust_on=false;
 	//local module-variables
@@ -129,12 +130,15 @@ void Hyper::aerodynamics(double int_step)
 	double clm0(0);
 	double clmq(0);
 	double secondterm(0);
+	(void)secondterm; // xxxx
 
 
 	//localizing module-variables
 	//input data
 	int maero=hyper[25].integer();
+	(void)maero; // xxxx
 	double refa=hyper[26].real();
+	(void)refa; // xxxx
 	double refd=hyper[27].real();
 	double xcg_ref = hyper[28].real();
 	double alplimx = hyper[29].real();
@@ -143,22 +147,32 @@ void Hyper::aerodynamics(double int_step)
 	double cma=hyper[19].real();
 	//input from other modules
 	double time=round6[0].real();
+	(void)time; // xxxx
 	double alppx=round6[17].real();
 	double phipx=round6[18].real();
 	double alphax=round6[19].real();
+	(void)alphax; // xxxx
 	double betax=round6[20].real();
+	(void)betax; // xxxx
 	double rho=round6[2].real();
+	(void)rho; // xxxx
 	double vmach=round6[3].real();
 	double pdynmc=round6[4].real();
+	(void)pdynmc; // xxxx
 	double tempk=round6[5].real();
+	(void)tempk; // xxxx
 	double dvba=round6[10].real();
 	double ppx=round6[21].real();
+	(void)ppx; // xxxx
 	double qqx=round6[22].real();
 	double rrx=round6[23].real();
 	double alt=round6[32].real();
+	(void)alt; // xxxx
 	double vmass=hyper[0].real();
+	(void)vmass; // xxxx
 	double xcg=hyper[1].real();
 	double trcode=hyper[24].real();
+	(void)trcode; // xxxx
 	double thrust = hyper[3].real();
 	//-------------------------------------------------------------------------
 	//transforming body rates from body -> aeroballistic coord.
@@ -167,6 +181,7 @@ void Hyper::aerodynamics(double int_step)
 	double sphip=sin(phip);
 	double qqax=qqx*cphip-rrx*sphip;
 	double rrax=qqx*sphip+rrx*cphip;
+	(void)rrax; // xxxx
 
 	//looking up axial force coefficients
 	ca0=aerotable.look_up("ca0slv3_vs_mach",vmach);

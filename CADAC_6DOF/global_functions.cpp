@@ -281,6 +281,7 @@ Cadac *set_obj_type(fstream &input,Module *module_list,int num_modules)
 	char temp[CHARN];
 	Cadac *obj=NULL;
 	int file_ptr=(0);
+	(void)file_ptr; // xxxx
 
 	//diagnostic: file pointer
 	file_ptr=int(input.tellg());
@@ -314,6 +315,7 @@ double acquire_endtime(fstream &input)
 	char read[CHARN];
 	char line_clear[CHARL];
 	int file_ptr=(0);
+	(void)file_ptr; // xxxx
 
 	//resetting file pointer to beginning
 	file_ptr=int(input.tellg()); //note: for test only
