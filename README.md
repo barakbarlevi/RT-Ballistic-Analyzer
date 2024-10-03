@@ -28,11 +28,12 @@ In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is 
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
 ### Usage
-1. Open Google Earth. Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
-2. Navigate to the launch point site. By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
-3. Start the server:\
-`./MOJO_BINARY`\
-or:\
+###### 1. Open Google Earth
+Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
+###### 2. Navigate to the launch point site
+By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
+###### 3. Start the server
+`./MOJO_BINARY` , or:\
 `./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]`
 
 Options:
@@ -41,16 +42,14 @@ Options:
 -f [path]                    Path to the base directory RT-Ballistic-Analyzer
 -h [heightFirstDetection]    Set the height for first detection in meters (float value)
 ```
-Default values when option isn't specified:
+Default values when an option isn't specified:
 ```
 port: 36961
 path: /home/username/RT-Ballistic-Analyzer
 heightFirstDetection: 15000
 ```
-
-4. Send target detections:\
-`./rt_sendDetection_BINARY`\
-or:\
+###### 4. Send target detections
+`./rt_sendDetection_BINARY` , or:\
 `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
 
  Options:
@@ -61,7 +60,7 @@ or:\
 -n [period_ns]               Set real-time task period
 -p [rt_priority]                Set real-time task priority
 ```
-Default values when option isn't specified:
+Default values when an option isn't specified:
 ```
 IP: 127.0.01
 port: 36961
@@ -70,23 +69,27 @@ period_ns = 15695067.264
 rt_priority = 80
 ```
 
-#### Examples
+
+
+### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
 
 ##### Running entirely on an x86_64 machine
 ###### Example 1
-`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`
-Open new terminal
-Divergent trajectory: `./rt_sendDetection_BINARY`
-Non-divergent trajectory: `./rt_sendDetection_BINARY -f rt_sendDetection/V180-Orig.asc`
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`\
+Open a new terminal.\
+`cd .../RT-Ballistic-Analyzer`\
+`./rt_sendDetection_BINARY` - Divergent trajectory, sends "V180.asc".\
+`./rt_sendDetection_BINARY -f rt_sendDetection/V180-Orig.asc` - Non-divergent trajectory, sends "V180-Orig.asc".
 
 ###### Example 2
-`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 45454 -h 14739`
-Open new terminal
+`./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 45454 -h 14739`\
+Open a new terminal.\
+`cd .../RT-Ballistic-Analyzer`\
 `./rt_sendDetection_BINARY -j 45454`
 
 ##### Running the rt_sendDetection_BINARY on ARMv7-A
-For example for a host machine with IP 192.168.0.3, Could be any other valid IPv4 address.
+Host machine with IP 192.168.0.3, Could be any other valid IPv4 address.
 
 ###### Example 1
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`
@@ -95,6 +98,6 @@ On target machine:
 
 ###### Example 2
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 55443 -h 14739`
-Open new terminal:
+On target machine:
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -j 55443 -f V180-Orig.asc`
 
