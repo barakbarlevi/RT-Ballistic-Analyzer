@@ -11,8 +11,11 @@ The application comprises 3 parts:
 3. **MOJO** - Acting as a server, synchronously reads and compares track data to the results of the 6-DOF, while interfacing with Google Earth. Runs the background thread that alerts when irregularities are detected.
 
 ### Requirements
-Should work on conventional Debian machine. No package installations required.
-XXXX is it though? rephrase? 
+A Unix-like system with support for POSIX threads.
+Library libx11-dev is required for X11 window system support:
+```bash
+  sudo apt install libx11-dev
+```
 
 ### Build from source
 ```
@@ -25,15 +28,47 @@ In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is 
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
 ### Usage
-1. Open Google Earth. Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it. $${\color{red}XXXX ADD ONE TO GITHUB, CURRENTLY IGNORED}$$
+1. Open Google Earth. Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
 2. Navigate to the launch point site. By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
 3. Start the server:\
-`./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]` - testests
-`./MOJO_BINARY` - testest\
+`./MOJO_BINARY`\
+or:\
+`./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]`
+
+Options:
+```
+-j [port]                    Set the port number (1-65535)
+-f [path]                    Path to the base directory RT-Ballistic-Analyzer
+-h [heightFirstDetection]    Set the height for first detection in meters (float value)
+```
+Default values when option isn't specified:
+```
+port: 36961
+path: /home/username/RT-Ballistic-Analyzer
+heightFirstDetection: 15000
+```
 
 4. Send target detections:\
- `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]` - sdfsdfdsf\
- `./rt_sendDetection_BINARY` - sdfsdfsd
+`./rt_sendDetection_BINARY`\
+or:\
+`./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
+
+ Options:
+```
+-i [IP]                      IPv4 address of the host
+-j [port]                    Port number on which to write
+-f [path]                    Path to the detections file being transferred
+-n [period_ns]               Set real-time task period
+-p [rt_priority]                Set real-time task priority
+```
+Default values when option isn't specified:
+```
+IP: 127.0.01
+port: 36961
+path: rt_sendDetection/V180.asc
+period_ns = 15695067.264
+rt_priority = 80
+```
 
 #### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
