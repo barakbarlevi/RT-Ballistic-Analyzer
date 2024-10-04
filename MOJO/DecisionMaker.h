@@ -1,7 +1,7 @@
 /*=============================================================================
 'DecisionMaker' is a wrapper around one of the core functionalities in this
 project, which is to detect irregularities in the detected trajectory when 
-compared to expected simulation results. On initialization, it recevies pointers
+compared to expected simulation results. On initialization, it receives pointers
 to the sensor trajectory and a std::vector whose elements are all suppliers
 collectors. calculate() does any custom calculations involving these two.
 =============================================================================*/

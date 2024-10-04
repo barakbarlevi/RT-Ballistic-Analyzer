@@ -2,12 +2,13 @@
 Encapsulating synchronization for the entire program.
 
 Case1: Send a signal from std::thread 'receiveDataFromRealtime' to the main
-thread when the first message in the sequence has arrived over the socket. This
-is done in function 'FirstMsgArrived()'. in main(), function 'WaitForFirstMsg()'
-is blocking.
+thread when the first message in the sequence has arrived over the socket. The
+main thread starts the former, which initializes a socket and listens on it.
+Signaling is done in function 'FirstMsgArrived()'. in main(), function
+'WaitForFirstMsg()' is blocking.
 
 Case2: Producer-consumer model for synchronizing storing the relevant data
-from messages recevied via network, and actually using it to:
+from messages received via network, and actually using it to:
 (a) in main(): set 'BITA_Params' both in the while() loop awaiting to reach
 'heightFirstDetection' (any other condition could be set) and in the do-while()
 loop iterating over 'suppliersCollectorsVector', and
