@@ -1,5 +1,7 @@
 This part of the project combines its other two key parts, which are: a real-time task that feeds in detection data simulating a generic sensor, and the fast ballistic trajectories 6DOF that can be set with mid-air initial conditions. The 'MOJO' ballistic analyzer integrates them, and runs the logic that compares their outcomes to arrive at a practical conclusion. 
 
+For more, see the [full documentation](https://docs.google.com/document/d/1E4sZPrR8SMirfW4VgnSzsHGLtWLYPDiTgV4Ykeg03AU/edit?usp=sharing).
+
 Some nomenclature for the analyzer:\
 ![fig19](https://github.com/user-attachments/assets/0ac0677c-6ee9-44ab-a323-2e2737d4dcfb)
 
