@@ -2,7 +2,7 @@
 [See the full documentation in this link](https://docs.google.com/document/d/1E4sZPrR8SMirfW4VgnSzsHGLtWLYPDiTgV4Ykeg03AU/edit?usp=sharing)
 
 In this work, an application for ballistic trajectories analysis was created. The part of the application that provides data on the target’s state as captured by a generic sensor is implemented as a real time cyclic task running on an ARM Cortex®‑A7. An x86_64 version of it is provided here as well, to be run from a conventional host PC.\
-On the host machine, C++ code will synchronously read and compare that data to the results of an on the fly as-fast-as-possible 6DOF simulation, while interfacing with Google Earth. A thread that takes the target detections and simulation results runs in the background, calculates whether conditions relating the two are met, in which case it'll send a notification if. These conditions can be easily modified.
+On the host machine, C++ code will synchronously read and compare that data to the results of an on the fly as-fast-as-possible 6DOF simulation, while interfacing with Google Earth. A thread that takes the target detections and simulation results runs in the background, calculates whether conditions relating the two are met, in which case it'll send a notification. These conditions can be easily modified.
 
 ![RedTraj](https://github.com/user-attachments/assets/4337a711-6664-4af9-b5c2-fa2295bb56f8)
 
