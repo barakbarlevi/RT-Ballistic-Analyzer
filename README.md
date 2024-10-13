@@ -51,6 +51,7 @@ heightFirstDetection: 15000
 ```
 ###### 4. Send target detections
 In a second terminal window,\
+`cd .../RT-Ballistic-Analyzer`\
 `./rt_sendDetection_BINARY` , or:\
 `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
 
