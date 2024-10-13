@@ -50,6 +50,7 @@ path: /home/username/RT-Ballistic-Analyzer
 heightFirstDetection: 15000
 ```
 ###### 4. Send target detections
+In a second terminal window,
 `./rt_sendDetection_BINARY` , or:\
 `./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
 
@@ -79,14 +80,14 @@ The default path without specifing the -f option is `/home/user/RT-Ballistic-Ana
 ##### Running entirely on an x86_64 machine
 ###### Example 1
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`\
-Open a new terminal.\
+In a second terminal window,
 `cd .../RT-Ballistic-Analyzer`\
 `./rt_sendDetection_BINARY` - Divergent trajectory, sends "V180.asc".\
 `./rt_sendDetection_BINARY -f rt_sendDetection/V180-Orig.asc` - Non-divergent trajectory, sends "V180-Orig.asc".
 
 ###### Example 2
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 45454 -h 14739`\
-Open a new terminal.\
+In a second terminal window,
 `cd .../RT-Ballistic-Analyzer`\
 `./rt_sendDetection_BINARY -j 45454`
 
