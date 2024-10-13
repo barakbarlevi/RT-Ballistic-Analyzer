@@ -25,7 +25,7 @@ cd RT-Ballistic-Analyzer
 make
 ```
 This should execute three Makefiles sequentially, one for each of the parts mentioned above, resulting in the creation of the corresponding binaries.\
-In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is needed. See this documentation xxxx or check online for cross compiling for ARM Cortex®‑A7.\
+In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is needed. See this the [cross compiling part](https://docs.google.com/document/d/1E4sZPrR8SMirfW4VgnSzsHGLtWLYPDiTgV4Ykeg03AU/edit?tab=t.0#heading=h.a5rd0i5xb30j) in this project's full documentation or check online for cross compiling for ARM Cortex®‑A7.\
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
 ### Usage & Examples
