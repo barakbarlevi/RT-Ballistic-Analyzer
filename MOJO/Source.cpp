@@ -88,6 +88,7 @@ int main(int argc, char* argv[])
 
     std::string pathBaseDir = home + "/RT-Ballistic-Analyzer";
     float heightFirstDetection(15000); // [meters]
+    float heightSecondCollector = 50912.05;
     std::regex floatRegex("^[+-]?([0-9]*[.])?[0-9]+$");
 
     
@@ -289,7 +290,29 @@ int main(int argc, char* argv[])
             }
 
             suppliersCollectorsVector.back()->plotCollectorAtOnce(effective_dtPlot);
-            std::this_thread::sleep_for(std::chrono::milliseconds(1450));
+            
+
+
+            // if works on vm, put into a function xxxx
+            //std::this_thread::sleep_for(std::chrono::milliseconds(1450)); // xxxx
+            while ((std::stof(trajectoryFromSensor.getBITA_Params().BITA_height) < heightSecondCollector) && (trajectoryFromSensor.get_vVertical() <= 0))
+            {
+                std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
+                syncObject->syncMsgStoreAndRead_cv_.wait(ul, [&](){ return syncObject->syncMsgStoreAndRead_ready_; });
+                // Do work.
+                trajectoryFromSensor.setBITA_Params();
+                std::cout << "height: " << trajectoryFromSensor.getBITA_Params().BITA_height << std::endl;
+                syncObject->syncMsgStoreAndRead_ready_ = false;
+                ul.unlock();
+                syncObject->syncMsgStoreAndRead_cv_.notify_one();
+                ul.lock();
+            }
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            std::cout << "Reached heightSecondCollector:" << heightSecondCollector << "[m], at currentDetectionIndex: " << trajectoryFromSensor.getCurrentDetectionIndex() << std::endl;
+
+
+
+
 
 
             std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
