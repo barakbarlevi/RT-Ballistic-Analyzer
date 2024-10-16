@@ -13,7 +13,7 @@ The application comprises 3 parts:
 
 ### Requirements
 A Unix-like system with support for POSIX threads.
-Library libx11-dev is required for X11 window system support:
+Library libx11-dev is required for X11 window system support. On debian based systems:
 ```bash
   sudo apt install libx11-dev
 ```
