@@ -76,7 +76,7 @@ Only when running in a real-time environment is rt_priority used, and then its d
 Setting real-time attributes is commented out in `rt_sendDetection/rt_sendDetection.c`, and can be uncommented when needed.
 
 > **🔔 Attention**
-> If no trajectories are visualized in Earth on the first try, please remove Primary_Controll.kml and reinsert it and run the commands from steps 3,4 again.\
+> If no trajectories are visualized on the first try, please remove Primary_Controll.kml from Earth, reinsert it and run the commands from steps 3,4 again.\
 > **🔔 Attention**
 > On some machines an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
 
