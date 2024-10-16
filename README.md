@@ -78,7 +78,7 @@ Setting real-time attributes is commented out in `rt_sendDetection/rt_sendDetect
 > **🔔 Attention**
 > If no trajectories are visualized on the first try, please remove Primary_Controll.kml from Earth, reinsert it and run the commands from steps 3,4 again.\
 > **🔔 Attention**
-> On some machines an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
+> On some machines (typically on VMs) an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
 
 #### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
