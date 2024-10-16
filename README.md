@@ -8,7 +8,7 @@ On the host machine, C++ code will synchronously read and compare that data to t
 
 The application comprises 3 parts:
 1. **rt_sendDetection** - Acting as a client, this program sends the entire contents of a .asc file one line after the other in a periodic fashion, via a unix socket to the host machine, until EOF is reached. The periodicity simulates live target tracking. Intended to run as a real-time task on an ARM Cortex®‑A7. An x86_64 version is given here, for which real-time context code is commented out.
-2. **SIX_DOF** - A Six Degrees of Freedom simulation for an unguided rocket. Based on the open source CADAC simulation by Professor Petel Zipfel.
+2. **CADAC_6DOF** - A Six Degrees of Freedom simulation for an unguided rocket. Based on the open source CADAC simulation by Professor Petel Zipfel.
 3. **MOJO** - Acting as a server, synchronously reads and compares track data to the results of the 6DOF, while interfacing with Google Earth. Runs the background thread that alerts when irregularities are detected.
 
 ### Requirements
@@ -29,8 +29,8 @@ In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is 
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
 ### Usage & Examples
-###### 1. Open Google Earth
-Drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
+###### 1. Download Google Earth
+Download Google Earth in your machine. Open it and drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
 ###### 2. Navigate Earth to the launch point site
 By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
 ###### 3. Start the server
@@ -49,6 +49,7 @@ port: 36961
 path: /home/username/RT-Ballistic-Analyzer
 heightFirstDetection: 15000
 ```
+Minimize the terminal window to ensure that Google Earth is fully visible.
 ###### 4. Send target detections
 In a second terminal window,\
 `cd .../RT-Ballistic-Analyzer`\
