@@ -21,7 +21,17 @@ namespace utils
 
         if (pos.size() < (size_t)NumOfEncounterToExclude)
         {
-            std::cerr << "Size of pos < NumOfEncounterToExclude\n" << "NumOfEncounterToExclude: " << NumOfEncounterToExclude << ", str: " << str << " (Caller: " << caller << "\n";
+            std::cerr << "Size of pos < NumOfEncounterToExclude\n" << "NumOfEncounterToExclude: " << NumOfEncounterToExclude << std::endl;
+            std::cerr << "pos: " << std::endl;
+            for (const auto& element : pos) {
+                std::cout << element << " ";
+            }
+            std::cerr << std::endl;
+            std::cerr << "pos.size(): " << pos.size() << std::endl;
+            std::cerr << "functionality: " << functionality << std::endl;
+            std::cerr << "if functionality==0, returning: " << str.substr(0, pos[NumOfEncounterToExclude - 1]) << std::endl;
+            std::cerr << "if functionality==1, returning: " << str.substr(pos[NumOfEncounterToExclude - 2] + 1, pos[NumOfEncounterToExclude - 1] - pos[NumOfEncounterToExclude - 2] - 1) << std::endl;
+            std::cerr << "str: " << str << " (Caller: " << caller << "\n";
             std::cout << "SubStringStartTillReaching failed: " << std::strerror(errno) << std::endl;
             return str;
         }
