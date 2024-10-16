@@ -25,6 +25,12 @@ class SensorTrajectoryCADAC : public SensorTrajectory {
         return std::stof(utils::SubStringStartTillReaching(data_[currentDetectionIndex_], ',', 6, 1, currentDetectionIndex_, "SensorTrajectory::getCurrentAlt",true));
     }
 
+    /**
+     * @brief Continuously iterate until a certain height at ascent is reached. State vector (position, velocity, etc) is sampled in synchronization with incoming detections: receive message -> sample -> receive message -> sample ....
+     * @param height The height that would terminate the function's execution once reached in ascent.
+     */
+    void iterateUntilReachingHeightAscent(float height, SyncObject* syncObject);
+
     virtual void plotDataFromRT(SyncObject* syncObject);
 
     protected:

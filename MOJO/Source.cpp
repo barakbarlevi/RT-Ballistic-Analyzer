@@ -203,26 +203,7 @@ int main(int argc, char* argv[])
         // sampled state vector elements of the detected target, is met. This condtion could be set by the user, and should only rely on
         // detectable parameters. In the example below, we iterate until a certain height at ascent is reached. State vector (position, velocity, etc)
         // is sampled in synchronization with incoming detections: receive message -> sample -> receive message -> sample ....
-        
-        while ((std::stof(trajectoryFromSensor.getBITA_Params().BITA_height) < heightFirstDetection) && (trajectoryFromSensor.get_vVertical() <= 0))
-        {
-            std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
-
-            syncObject->syncMsgStoreAndRead_cv_.wait(ul, [&](){ return syncObject->syncMsgStoreAndRead_ready_; });
-
-            // Do work.
-            trajectoryFromSensor.setBITA_Params();
-            std::cout << "height: " << trajectoryFromSensor.getBITA_Params().BITA_height << std::endl;
-
-            syncObject->syncMsgStoreAndRead_ready_ = false;
-
-            ul.unlock();
-
-            syncObject->syncMsgStoreAndRead_cv_.notify_one();
-
-            ul.lock();
-        }
-
+        trajectoryFromSensor.iterateUntilReachingHeightAscent(heightFirstDetection, syncObject);
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
         std::cout << "Reached " << heightFirstDetection << "[m], at currentDetectionIndex: " << trajectoryFromSensor.getCurrentDetectionIndex() << std::endl;
         float detectionMoment = std::stof(trajectoryFromSensor.getBITA_Params().BITA_time);
@@ -290,30 +271,8 @@ int main(int argc, char* argv[])
             }
 
             suppliersCollectorsVector.back()->plotCollectorAtOnce(effective_dtPlot);
+            trajectoryFromSensor.iterateUntilReachingHeightAscent(heightSecondCollector, syncObject);
             
-
-
-            // if works on vm, put into a function xxxx
-            //std::this_thread::sleep_for(std::chrono::milliseconds(1450)); // xxxx
-            while ((std::stof(trajectoryFromSensor.getBITA_Params().BITA_height) < heightSecondCollector) && (trajectoryFromSensor.get_vVertical() <= 0))
-            {
-                std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
-                syncObject->syncMsgStoreAndRead_cv_.wait(ul, [&](){ return syncObject->syncMsgStoreAndRead_ready_; });
-                // Do work.
-                trajectoryFromSensor.setBITA_Params();
-                std::cout << "height: " << trajectoryFromSensor.getBITA_Params().BITA_height << std::endl;
-                syncObject->syncMsgStoreAndRead_ready_ = false;
-                ul.unlock();
-                syncObject->syncMsgStoreAndRead_cv_.notify_one();
-                ul.lock();
-            }
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
-            std::cout << "Reached heightSecondCollector:" << heightSecondCollector << "[m], at currentDetectionIndex: " << trajectoryFromSensor.getCurrentDetectionIndex() << std::endl;
-
-
-
-
-
 
             std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
             syncObject->syncMsgStoreAndRead_cv_.wait(ul, [&](){ return syncObject->syncMsgStoreAndRead_ready_; });

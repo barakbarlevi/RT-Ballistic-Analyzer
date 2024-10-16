@@ -207,3 +207,26 @@ void SensorTrajectoryCADAC::plotDataFromRT(SyncObject* syncObject)
     } while (syncObject->transmissionEnded_ == false);
 
 }
+
+
+void SensorTrajectoryCADAC::iterateUntilReachingHeightAscent(float height, SyncObject* syncObject) {
+    
+    while ((std::stof(BITA_Params_.BITA_height) < height) && (get_vVertical() <= 0))
+        {
+            std::unique_lock<std::mutex> ul(syncObject->syncMsgStoreAndRead_mutex_);
+
+            syncObject->syncMsgStoreAndRead_cv_.wait(ul, [&](){ return syncObject->syncMsgStoreAndRead_ready_; });
+
+            // Do work.
+            setBITA_Params();
+            std::cout << "height: " << BITA_Params_.BITA_height << std::endl;
+
+            syncObject->syncMsgStoreAndRead_ready_ = false;
+
+            ul.unlock();
+
+            syncObject->syncMsgStoreAndRead_cv_.notify_one();
+
+            ul.lock();
+        }
+}

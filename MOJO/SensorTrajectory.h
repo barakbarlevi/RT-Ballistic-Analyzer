@@ -29,7 +29,6 @@ class SensorTrajectory : public Trajectory {
      *        line argument, this argument is taken. Otherwise, sets it to a
      *        default number: 36961.
      */
-    
     void setPortNumber();
     int getPortNumber() { return this->portNumber_;};
 
@@ -64,6 +63,7 @@ class SensorTrajectory : public Trajectory {
         utils::kmlInit_href(this->kmlPath_, this->kmlPath_, this->colorInGE_);
         return std::thread([=, this]{plotDataFromRT(syncObject);});
     }
+    
     
     protected:
     
