@@ -28,7 +28,7 @@ make
 ```
 This should execute three Makefiles sequentially, one for each of the parts mentioned above, resulting in the creation of the corresponding binaries.\
 In order to compile an ARM binary for a target board, a cross compiler is needed. See the [cross compiling part](https://docs.google.com/document/d/1E4sZPrR8SMirfW4VgnSzsHGLtWLYPDiTgV4Ykeg03AU/edit?tab=t.0#bookmark=id.ufanmj8n2ej) in this project's full documentation or check online for cross compiling for ARM Cortex®‑A7.\
-For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation and produces an x86 binary named `rt_sendDetection_BINARY_x86`.
+For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation and produces an x86 binary named `rt_sendDetection_BINARY_x86`. When this type of compilation is done, no real-time attributes are set.
 
 ### Usage & Examples
 
