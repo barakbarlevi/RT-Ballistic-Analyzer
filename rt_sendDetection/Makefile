@@ -9,7 +9,7 @@ CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.c))
 OBJECTS = $(patsubst %.c,%.o,$(CFILES))
 DEPENDS = $(OBJECTS:.o=.d)
 
-EXECUTABLE := ../rt_sendDetection_BINARY
+EXECUTABLE := ../rt_sendDetection_BINARY_x86
 
 all: $(EXECUTABLE)
 
