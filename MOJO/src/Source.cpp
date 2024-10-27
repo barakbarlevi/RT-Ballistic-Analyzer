@@ -166,15 +166,15 @@ int main(int argc, char* argv[])
     // Declaring these as vectors allows for dynamically changing the table's 'rows', enabling the live addition/elimination of airframe models, based on received target data such as energy levels, typical heights and speed etc.
     std::vector<availableSuppliers> predictionSuppliers = {CADAC, CADAC, CADAC};
 
-    std::vector<std::string> currentCollectorPriamryInputFiles = {pathBaseDir + "/CADAC_6DOF/inputOriginal.asc",
-                                                                  pathBaseDir + "/CADAC_6DOF/input_Drag0p7.asc",
-                                                                  pathBaseDir + "/CADAC_6DOF/input_Drag1p3.asc"};
+    std::vector<std::string> currentCollectorPriamryInputFiles = {pathBaseDir + "/CADAC_6DOF/src/inputOriginal.asc",
+                                                                  pathBaseDir + "/CADAC_6DOF/src/input_Drag0p7.asc",
+                                                                  pathBaseDir + "/CADAC_6DOF/src/input_Drag1p3.asc"};
     std::vector<std::string> currentCollectorExecutables = {pathBaseDir + "/CADAC_6DOF_BINARY",
                                                             pathBaseDir + "/CADAC_6DOF_BINARY",
                                                             pathBaseDir + "/CADAC_6DOF_BINARY"};
-    std::vector<std::string> currentCollectorLoadPaths = {pathBaseDir + "/CADAC_6DOF/cadacOutputVDXVDX.asc",
-                                                          pathBaseDir + "/CADAC_6DOF/cadacOutputVDXVDX.asc",
-                                                          pathBaseDir + "/CADAC_6DOF/cadacOutputVDXVDX.asc"};
+    std::vector<std::string> currentCollectorLoadPaths = {pathBaseDir + "/CADAC_6DOF/src/cadacOutputVDXVDX.asc",
+                                                          pathBaseDir + "/CADAC_6DOF/src/cadacOutputVDXVDX.asc",
+                                                          pathBaseDir + "/CADAC_6DOF/src/cadacOutputVDXVDX.asc"};
 
 
     // Initialize necessary .kml files. Only Primary_Controller.kml has to be dragged into Google Earth.
@@ -246,7 +246,7 @@ int main(int argc, char* argv[])
                 {
                     case CADAC:
                     {
-                        std::shared_ptr<PredictionSupplierCADAC> predictionSupplierCADAC = std::make_shared<PredictionSupplierCADAC>(currentCollectorExecutables.at(i), currentCollectorPriamryInputFiles.at(i), pathBaseDir + "/CADAC_6DOF/");
+                        std::shared_ptr<PredictionSupplierCADAC> predictionSupplierCADAC = std::make_shared<PredictionSupplierCADAC>(currentCollectorExecutables.at(i), currentCollectorPriamryInputFiles.at(i), pathBaseDir + "/CADAC_6DOF/src/");
 
                         // Injecting the state of the detected target into the current input file for a simulations.
                         // At the first time executing this line, BITA params are from 'heightFirstDetection'.

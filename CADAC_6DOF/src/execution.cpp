@@ -206,7 +206,7 @@ int main(int argc, char *argv[])
 						//plotiasc="plot"+string(index)+".asc"; //using Standard Library string constructor
 						//plotiasc="/home/barak/Source_Files/CADAC/Custom/Version7/plot"+string(index)+".asc"; //using Standard Library string constructor
 						//plotiasc=string(argv[2]) + "/plot"+string(index)+".asc"; //using Standard Library string constructor
-						plotiasc="CADAC_6DOF/plot"+string(index)+".asc"; //using Standard Library string constructor
+						plotiasc="CADAC_6DOF/src/plot"+string(index)+".asc"; //using Standard Library string constructor
 
 						plot_file_list[i]=plotiasc;
 						name=plotiasc.c_str(); //using string member function to convert to char array 
@@ -263,7 +263,7 @@ int main(int argc, char *argv[])
 	
 	
 	//std::string command = "cat " + string(argv[2]) +"/plot1.asc | awk -v OFS=',' '{print $1,$8,$9,$4,$5,$6,$7,$10,$11,$12,$13}' > " + string(argv[2]) +"/cadacOutputVDXVDX.asc";
-	std::string command = "cat CADAC_6DOF/plot1.asc | awk -v OFS=',' '{print $1,$8,$9,$4,$5,$6,$7,$10,$11,$12,$13}' > CADAC_6DOF/cadacOutputVDXVDX.asc";
+	std::string command = "cat CADAC_6DOF/src/plot1.asc | awk -v OFS=',' '{print $1,$8,$9,$4,$5,$6,$7,$10,$11,$12,$13}' > CADAC_6DOF/src/cadacOutputVDXVDX.asc";
 	int systemReturn = std::system(command.c_str());
 	
 	std::cout << "System() return: " << systemReturn << std::endl;

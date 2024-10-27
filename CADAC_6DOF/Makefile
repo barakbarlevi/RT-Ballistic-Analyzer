@@ -1,11 +1,8 @@
-#XENO_CONFIG := /usr/xenomai/bin/xeno-config
-
 CC := g++
-CODEDIRS=.
-INCDIRS=.
-
-#CFLAGS := $(shell $(XENO_CONFIG)  --posix --alchemy --cflags) $(foreach D,$(INCDIRS),-I$(D))
-#LDFLAGS := $(shell $(XENO_CONFIG)  --posix --alchemy --ldflags --auto-init-solib)
+#CODEDIRS=.
+#INCDIRS=.
+CODEDIRS := src
+INCDIRS := include
 
 #CFLAGS := $(foreach D,$(INCDIRS),-I$(D)) // ORIG
 LDFLAGS := -g
@@ -13,7 +10,8 @@ LDFLAGS := -g
 CFLAGS :=-Wall -Wextra -g $(foreach D,$(INCDIRS),-I$(D))
 
 
-CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.cpp))
+#CFILES = $(foreach D,$(CODEDIRS),$(wildcard $(D)/*.cpp))
+CFILES := $(wildcard $(CODEDIRS)/*.cpp)
 OBJECTS = $(patsubst %.cpp,%.o,$(CFILES))
 
 EXECUTABLE := ../CADAC_6DOF_BINARY
@@ -23,7 +21,8 @@ all: $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
-%.o: %.cpp
+#%.o: %.cpp
+$(CODEDIRS)/%.o: $(CODEDIRS)/%.cpp
 		echo $@
 		echo $<
 		$(CC) -c -o $@ $< $(CFLAGS)
