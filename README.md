@@ -47,7 +47,7 @@ Options:
 
 Minimize the terminal window to ensure that Google Earth is fully visible.
 ###### 2. Start Earth, navigate to the launch point site
-If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. This can be done from the command line as well:\
+If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. This can be done from an available terminal as well:\
 `google-earth-pro "$(readlink -f MOJO/Primary_Controller.kml)"`\
 The application opens a pop-up tip window upon startup, which may prevent automatic navigation and camera positioning from the command line. I haven’t found a workaround that simplifies this better than just manually closing the window and navigating.
 
