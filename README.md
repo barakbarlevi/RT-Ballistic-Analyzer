@@ -78,7 +78,7 @@ path: rt_sendDetection/V180.asc
 period_ns = 15695067.264
 ```
 Only when running in a real-time arm environment is `rt_priority` used, and then its default value is:\
-`rt_priority = 80`\
+`rt_priority = 80`
 
 Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's -D option during compilation.
 
