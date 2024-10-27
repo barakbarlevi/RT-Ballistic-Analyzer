@@ -79,10 +79,11 @@ period_ns = 15695067.264
 ```
 Only when running in a real-time arm environment is `rt_priority` used, and then its default value is:\
 `rt_priority = 80`\
+
 Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's -D option during compilation.
 
 > **🔔 Attention**
-> If no trajectories are visualized on the first try, please remove Primary_Controll.kml from Earth, reinsert it and run the commands from steps 3,4 again.\
+> If no trajectories are visualized on the first try, remove `Primary_Controll.kml` from Earth, reinsert it and run the commands from steps 1,3 again.\
 > **🔔 Attention**
 > On some machines (typically on VMs) an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
 
