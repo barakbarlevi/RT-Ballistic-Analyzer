@@ -12,11 +12,13 @@ The application comprises 3 parts:
 3. **MOJO** - Acting as a server, synchronously reads and compares track data to the results of the 6DOF, while interfacing with Google Earth. Runs the background thread that alerts when irregularities are detected.
 
 ### Requirements
-A Unix-like system with support for POSIX threads.
+###### 1. A Unix-like system with support for POSIX threads.
 Library libx11-dev is required for X11 window system support. On debian based systems:
 ```bash
   sudo apt install libx11-dev
 ```
+###### 2. Google Earth application
+[Download](https://www.google.com/search?q=google+earth+linux+download) the latest version of the Google Earth app to your machine.
 
 ### Build from source
 ```
@@ -29,32 +31,36 @@ In order to execute `./rt_sendDetection` on an ARM machine, a cross compiler is 
 For demonstration purposes, assuming that the general viewer doesn't have the necessary cross-compiler and hardware currently availble, the Makefile performs native compilation.
 
 ### Usage & Examples
-###### 1. Download Google Earth
-[Download](https://www.google.com/search?q=google+earth+linux+download) Google Earth to your machine. Open it and drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
-###### 2. Navigate Earth to the launch point site
-By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
-###### 3. Start the server
-`./MOJO_BINARY` , or:\
+
+###### 1. Start the server
 `./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]`
+> [!TIP]
+> Recommended first time usage:\
+> `./MOJO_BINARY -f .`
 
 Options:
 ```
--j [port]                    Set the port number (1-65535)
--f [path]                    Path to the base directory RT-Ballistic-Analyzer
--h [heightFirstDetection]    Set the height for first detection in meters (float value)
+-j [port]                    Set the port number (1-65535). If option isn't specified, the default port number is 36961
+-f [path]                    Path to the base directory RT-Ballistic-Analyzer. If option isn't specified, the default path is /home/username/RT-Ballistic-Analyzer
+-h [heightFirstDetection]    Set the height for first detection in meters (float value). If option isn't specified, the default height is 15000[m]
 ```
-Default values when an option isn't specified:
-```
-port: 36961
-path: /home/username/RT-Ballistic-Analyzer
-heightFirstDetection: 15000
-```
+
 Minimize the terminal window to ensure that Google Earth is fully visible.
-###### 4. Send target detections
+###### 2. Start Earth, navigate to the launch point site
+If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. This can be done from the command line as well:\
+`google-earth-pro "$(readlink -f MOJO/Primary_Controller.kml)"`\
+The application opens a pop-up tip window upon startup, which may prevent automatic navigation and camera positioning from the command line. I haven’t found a workaround that simplifies this better than just manually closing the window and navigating.
+
+By default, the detected launch's initial (Lat, Lon) coordinates, specified in `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc`, are set to Vandenberg Air Force Base, CA.
+
+Navigate there by typing “Vandenberg Air Force Base, CA” into the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
+###### 3. Send target detections
 In a second terminal window,\
 `cd .../RT-Ballistic-Analyzer`\
-`./rt_sendDetection_BINARY` , or:\
-`./rt_sendDetection_BINARY -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
+`./rt_sendDetection_BINARY_x86 -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
+> [!TIP]
+> Recommended first time usage:\
+> `./rt_sendDetection_BINARY_x86`
 
  Options:
 ```
@@ -71,7 +77,7 @@ port: 36961
 path: rt_sendDetection/V180.asc
 period_ns = 15695067.264
 ```
-Only when running in a real-time environment is rt_priority used, and then its default value is:\
+Only when running in a real-time arm environment is `rt_priority used`, and then its default value is:\
 `rt_priority = 80`\
 Setting real-time attributes is commented out in `rt_sendDetection/rt_sendDetection.c`, and can be uncommented when needed.
 
