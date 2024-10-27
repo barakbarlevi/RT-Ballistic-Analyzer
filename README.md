@@ -55,7 +55,7 @@ By default, the detected launch's initial (Lat, Lon) coordinates, specified in `
 
 Navigate there by typing “Vandenberg Air Force Base, CA” into the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
 ###### 3. Send target detections
-In a new terminal window,\
+In a new terminal window, the following command will start transferring data to the already running server. At this point, trajectories visualization should start in Earth. \
 `cd .../RT-Ballistic-Analyzer`\
 `./rt_sendDetection_BINARY_x86 -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
 > [!TIP]
@@ -77,9 +77,9 @@ port: 36961
 path: rt_sendDetection/V180.asc
 period_ns = 15695067.264
 ```
-Only when running in a real-time arm environment is `rt_priority used`, and then its default value is:\
+Only when running in a real-time arm environment is `rt_priority` used, and then its default value is:\
 `rt_priority = 80`\
-Setting real-time attributes is commented out in `rt_sendDetection/rt_sendDetection.c`, and can be uncommented when needed.
+Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's -D option during compilation.
 
 > **🔔 Attention**
 > If no trajectories are visualized on the first try, please remove Primary_Controll.kml from Earth, reinsert it and run the commands from steps 3,4 again.\
