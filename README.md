@@ -30,7 +30,7 @@ For demonstration purposes, assuming that the general viewer doesn't have the ne
 
 ### Usage & Examples
 ###### 1. Download Google Earth
-Download Google Earth to your machine. Open it and drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
+[Download](https://www.google.com/search?q=google+earth+linux+download) Google Earth to your machine. Open it and drag `RT-Ballistic-Analyzer/MOJO/Primary_Controller.kml` into it.
 ###### 2. Navigate Earth to the launch point site
 By default, `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc` contains the (Lat, Lon) coordinates of Vandenberg Air Force Base, CA.
 ###### 3. Start the server
