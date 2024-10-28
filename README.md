@@ -62,7 +62,7 @@ The application opens a pop-up tip window upon startup, which may prevent automa
 
 By default, the detected launch's initial (Lat, Lon) coordinates, specified in `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc`, are set to Vandenberg Air Force Base, CA.
 
-Navigate there by typing “Vandenberg Air Force Base, CA” into the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
+Navigate there by typing “Vandenberg Air Force Base, CA” in the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
 ###### 3. Step 3: Send target detections
 In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. 
 ```
