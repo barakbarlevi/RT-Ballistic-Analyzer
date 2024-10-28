@@ -80,8 +80,7 @@ cd .../RT-Ballistic-Analyzer
 -n [period_ns]               Set real-time task period. If option isn't specified, default is 15695067.264
 -p [rt_priority]             Set real-time task priority
 ```
-Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation. Only then is `rt_priority` used, and then its default value is:\
-`rt_priority = 80`
+Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation. Only then is `rt_priority` used, and then its default value is: `rt_priority = 80`.
 
 > **🔔 Attention**
 > The visualization process can be rerun at any time by starting the server again with step 1, followed by repeating step 3, each in their respective shells.
