@@ -64,7 +64,7 @@ By default, the detected launch's initial (Lat, Lon) coordinates, specified in `
 
 Navigate there by typing “Vandenberg Air Force Base, CA” in the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
 ###### Step 3: Send target detections
-In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. 
+In a new terminal window, run the following command to initiate data transfer to the server, which was started in step 1. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. 
 ```
 cd .../RT-Ballistic-Analyzer
 ./rt_sendDetection_BINARY_x86 -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]
