@@ -95,17 +95,19 @@ The default path without specifing the -f option is `/home/user/RT-Ballistic-Ana
 ##### Running entirely on an x86_64 machine
 ###### Example 1
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`\
-In a second terminal window,\
-`cd .../RT-Ballistic-Analyzer`\
-`./rt_sendDetection_BINARY_x86` - Divergent trajectory, sends "V180.asc".\
-`./rt_sendDetection_BINARY_x86 -f rt_sendDetection/V180-Orig.asc` - Non-divergent trajectory, sends file `V180-Orig.asc`.
-
+In a second terminal window:
+```
+cd .../RT-Ballistic-Analyzer
+./rt_sendDetection_BINARY_x86                                     #Divergent trajectory, sends "V180.asc"
+./rt_sendDetection_BINARY_x86 -f rt_sendDetection/V180-Orig.asc   #Non-divergent trajectory, sends file `V180-Orig.asc
+```
 ###### Example 2
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 45454 -h 14739`\
-In a second terminal window,\
-`cd .../RT-Ballistic-Analyzer`\
-`./rt_sendDetection_BINARY_x86 -j 45454`
-
+In a second terminal window:
+```
+cd .../RT-Ballistic-Analyzer
+./rt_sendDetection_BINARY_x86 -j 45454
+```
 ##### Running the rt_sendDetection_BINARY on ARMv7-A
 Host machine with IP 192.168.0.3, Could be any other valid IPv4 address.
 
@@ -113,9 +115,7 @@ Host machine with IP 192.168.0.3, Could be any other valid IPv4 address.
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer`\
 On target machine:\
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -f V180.asc`
-
 ###### Example 2
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 55443 -h 14739`\
 On target machine:\
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -j 55443 -f V180-Orig.asc`
-
