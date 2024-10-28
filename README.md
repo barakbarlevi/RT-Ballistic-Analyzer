@@ -63,7 +63,7 @@ By default, the detected launch's initial (Lat, Lon) coordinates, specified in `
 
 Navigate there by typing “Vandenberg Air Force Base, CA” into the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
 ###### 3. Send target detections
-In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. The visualization process can be rerun anytime by entering the command from step 1 followed by the command in this step, in that order.
+In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. 
 ```
 cd .../RT-Ballistic-Analyzer
 ./rt_sendDetection_BINARY_x86 -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]
@@ -74,28 +74,22 @@ cd .../RT-Ballistic-Analyzer
 
  Options:
 ```
--i [IP]                      IPv4 address of the host
--j [port]                    Port number on which to write
--f [path]                    Path to the detections file being transferred
--n [period_ns]               Set real-time task period
--p [rt_priority]                Set real-time task priority
-```
-Default values when an option isn't specified:
-```
-IP: 127.0.01
-port: 36961
-path: rt_sendDetection/V180.asc
-period_ns = 15695067.264
+-i [IP]                      IPv4 address of the host. If option isn't specified, default IP: 127.0.01
+-j [port]                    Port number on which to write. If option isn't specified, the default port number is 36961
+-f [path]                    Path to the detections file being transferred. If option isn't specified, the default file path is rt_sendDetection/V180.asc
+-n [period_ns]               Set real-time task period. If option isn't specified, default is 15695067.264
+-p [rt_priority]             Set real-time task priority
 ```
 Only when running in a real-time arm environment is `rt_priority` used, and then its default value is:\
 `rt_priority = 80`
 
-Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation.
-
 > **🔔 Attention**
+> The visualization process can be rerun at any time by starting the server again with step 1, followed by repeating step 3, each in their respective shells.
 > If no trajectories are visualized on the first try, remove `Primary_Controll.kml` from Earth, reinsert it and run the commands from steps 1,3 again.\
 > **🔔 Attention**
 > On some machines (typically on VMs) an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
+
+Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation.
 
 #### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
