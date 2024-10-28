@@ -53,7 +53,7 @@ Options:
 
 Minimize the terminal window to ensure that Google Earth is fully visible.
 ###### 2. Step 2: Start Earth, navigate to the launch point site
-If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. This can be done from an available terminal as well:
+If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. Alternatively, this can be done from an available terminal as well:
 ```
 cd .../RT-Ballistic-Analyzer
 google-earth-pro "$(readlink -f MOJO/Primary_Controller.kml)"
