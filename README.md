@@ -38,7 +38,7 @@ In order to compile an ARM binary for a target board, a cross compiler is needed
 
 ### Usage & Examples
 
-###### 1. Step 1: Start the server
+###### Step 1: Start the server
 `./MOJO_BINARY -j [port] -f [path] -h [heightFirstDetection]`
 > [!TIP]
 > Recommended first time usage:\
@@ -52,7 +52,7 @@ Options:
 ```
 
 Minimize the terminal window to ensure that Google Earth is fully visible.
-###### 2. Step 2: Start Earth, navigate to the launch point site
+###### Step 2: Start Earth, navigate to the launch point site
 If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. Alternatively, this can be done from an available terminal as well:
 ```
 cd .../RT-Ballistic-Analyzer
@@ -63,7 +63,7 @@ The application opens a pop-up tip window upon startup, which may prevent automa
 By default, the detected launch's initial (Lat, Lon) coordinates, specified in `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc`, are set to Vandenberg Air Force Base, CA.
 
 Navigate there by typing “Vandenberg Air Force Base, CA” in the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
-###### 3. Step 3: Send target detections
+###### Step 3: Send target detections
 In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. 
 ```
 cd .../RT-Ballistic-Analyzer
