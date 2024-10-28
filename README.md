@@ -84,7 +84,7 @@ cd .../RT-Ballistic-Analyzer
 Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation. Only then is `rt_priority` used, and then its default value is `rt_priority = 80`.
 
 > **🔔 Attention**
-> The visualization process can be rerun at any time by starting the server again with step 1, followed by repeating step 3, each in their respective shells.
+> The visualization process can be rerun at any time by restarting the server with step 1, followed by repeating step 3, each in their respective shells.
 > If no trajectories are visualized on the first try, remove `Primary_Controll.kml` from Earth, reinsert it and run the commands from steps 1,3 again.\
 > **🔔 Attention**
 > On some machines (typically on VMs) an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
