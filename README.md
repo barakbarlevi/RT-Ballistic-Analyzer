@@ -13,12 +13,17 @@ The application comprises 3 parts:
 
 ### Requirements
 ###### 1. A Unix-like system with support for POSIX threads.
-Library libx11-dev is required for X11 window system support. On debian based systems:
-```bash
-  sudo apt install libx11-dev
-```
+Library libx11-dev is required for X11 window system support. On debian based systems:\
+`sudo apt install libx11-dev`\
+Make sure g++ is installed on your machine:\
+`g++ --version`
 ###### 2. Google Earth application
-[Download](https://www.google.com/search?q=google+earth+linux+download) the latest version of the Google Earth app to your machine.
+Download the latest version of the Google Earth app to your machine. For 64 bit systems:
+```
+sudo wget http://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
+sudo dpkg -i google-earth-stable*.deb
+sudo apt-get -f install
+```
 
 ### Build from source
 ```
@@ -47,17 +52,22 @@ Options:
 
 Minimize the terminal window to ensure that Google Earth is fully visible.
 ###### 2. Start Earth, navigate to the launch point site
-If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. This can be done from an available terminal as well:\
-`google-earth-pro "$(readlink -f MOJO/Primary_Controller.kml)"`\
+If you want to avoid openning a new terminal, just launch Google Earth and drag `MOJO/Primary_Controller.kml` into it. This can be done from an available terminal as well:
+```
+cd .../RT-Ballistic-Analyzer
+google-earth-pro "$(readlink -f MOJO/Primary_Controller.kml)"
+```
 The application opens a pop-up tip window upon startup, which may prevent automatic navigation and camera positioning from the command line. I haven’t found a workaround that simplifies this better than just manually closing the window and navigating.
 
 By default, the detected launch's initial (Lat, Lon) coordinates, specified in `RT-Ballistic-Analyzer/MOJO/inputOriginal.asc`, are set to Vandenberg Air Force Base, CA.
 
 Navigate there by typing “Vandenberg Air Force Base, CA” into the search box and hitting search. You may right click and use the “Show balloon” or “Fly here” options. Place your view to roughly match the one from the GIF in the beginning of this readme.
 ###### 3. Send target detections
-In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth. \
-`cd .../RT-Ballistic-Analyzer`\
-`./rt_sendDetection_BINARY_x86 -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]`
+In a new terminal window, run the following command to initiate data transfer to the server, which is already running. At this point, trajectories visualization should start in Earth, so It's suggested to minimize any window that may hide it, including this one. The visualization process can be rerun anytime by entering the command from step 1 followed by the command in this step, in that order.
+```
+cd .../RT-Ballistic-Analyzer
+./rt_sendDetection_BINARY_x86 -i [IP] -j [port] -f [path_to_file] -n [period_ns] -p [priority]
+```
 > [!TIP]
 > Recommended first time usage:\
 > `./rt_sendDetection_BINARY_x86`
