@@ -80,7 +80,7 @@ cd .../RT-Ballistic-Analyzer
 -n [period_ns]               Set real-time task period. If option isn't specified, default is 15695067.264
 -p [rt_priority]             Set real-time task priority
 ```
-Only when running in a real-time arm environment is `rt_priority` used, and then its default value is:\
+Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation. Only then is `rt_priority` used, and then its default value is:\
 `rt_priority = 80`
 
 > **🔔 Attention**
@@ -88,8 +88,6 @@ Only when running in a real-time arm environment is `rt_priority` used, and then
 > If no trajectories are visualized on the first try, remove `Primary_Controll.kml` from Earth, reinsert it and run the commands from steps 1,3 again.\
 > **🔔 Attention**
 > On some machines (typically on VMs) an error message: "error writing on stream socket: Connection reset by peer" will prompt on the client terminal. Connection is soon reestablished and this doesn't effect the outcomes.
-
-Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined. This can be done using GCC's `-D` option during compilation.
 
 #### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
