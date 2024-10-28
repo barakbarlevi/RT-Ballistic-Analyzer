@@ -18,7 +18,7 @@ Library libx11-dev is required for X11 window system support. On debian based sy
 Make sure g++ is installed on your machine:\
 `g++ --version`
 ###### 2. Google Earth application
-Download the latest version of the Google Earth app to your machine. For 64 bit systems:
+Download and install the latest version of the Google Earth app to your machine. For 64 bit systems:
 ```
 sudo wget http://dl.google.com/dl/earth/client/current/google-earth-stable_current_amd64.deb
 sudo dpkg -i google-earth-stable*.deb
