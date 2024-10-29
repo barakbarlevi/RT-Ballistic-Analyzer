@@ -14,7 +14,11 @@ The application comprises 3 parts:
 ### Requirements
 ###### 1. A Unix-like system with support for POSIX threads.
 Library libx11-dev is required for X11 window system support. On debian based systems:\
-`sudo apt install libx11-dev`\
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install libx11-dev
+```
 Make sure g++ is installed on your machine:\
 `g++ --version`
 ###### 2. Google Earth application
