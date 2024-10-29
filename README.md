@@ -86,7 +86,7 @@ Setting real-time attributes occurs only when the `ARM_TARGET` macro is defined.
 > **🔔 Attention**
 > The visualization process can be rerun at any time by restarting the server with step 1, followed by repeating step 3, each in their respective shells.\
 > **🔔 Attention**
-> Typically on VMs, the calculation-visualization process may get stuck in the middle or even terminate by a segfault. This is possibly due to the VM underperforming. Repeat step 1 followed by step 3, each in their respective shells, for several times. This should help demonstrate that the errors were likely isolated incidents.
+> Typically on VMs, the calculation-visualization process may get stuck in the middle or even get terminated by a segfault. This is possibly due to the VM underperforming. Repeat step 1 followed by step 3, each in their respective shells, for several times. This should help demonstrate that the errors were likely isolated incidents.
 
 #### Examples
 The default path without specifing the -f option is `/home/user/RT-Ballistic-Analyzer`.
