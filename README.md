@@ -120,5 +120,5 @@ On target machine:\
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -j 55443 -f V180-Orig.asc`
 
 
-[Resume](https://docs.google.com/document/d/1m5FYQYV_6Bp2gykrT0-TXfoafpJeTPsTHQyDyNh_vQM/edit?usp=sharing)
+[Resume](https://docs.google.com/document/d/1m5FYQYV_6Bp2gykrT0-TXfoafpJeTPsTHQyDyNh_vQM/edit?usp=sharing)  
 [Meeting](https://docs.google.com/document/d/1fK89VsNQZkHkjXS-QmtUNuaOqucvi6YxTYAjbm5rMso/edit?usp=sharing)
