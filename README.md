@@ -118,3 +118,7 @@ On target machine:\
 `./MOJO_BINARY -f /home/user/your/path/to/RT-Ballistic-Analyzer -j 55443 -h 14739`\
 On target machine:\
 `./rt_sendDetection_BINARY_Armv7-A -i 192.168.0.3 -j 55443 -f V180-Orig.asc`
+
+
+[Resume](https://docs.google.com/document/d/1m5FYQYV_6Bp2gykrT0-TXfoafpJeTPsTHQyDyNh_vQM/edit?usp=sharing)
+[Meeting](https://docs.google.com/document/d/1fK89VsNQZkHkjXS-QmtUNuaOqucvi6YxTYAjbm5rMso/edit?usp=sharing)
